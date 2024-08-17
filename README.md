@@ -13,4 +13,4 @@
     npm i
     npm run dev
 
-## Then you should be able to open up: []
+## Then you should be able to open up: [http://localhost:3000/]
