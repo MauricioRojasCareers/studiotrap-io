@@ -7,7 +7,7 @@
 ### Then you should be able to open up: http://localhost:3000/
 
 
-### This is studiotrap!
+# This is studiotrap!
 
 #### using t3 stack:
 
