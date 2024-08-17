@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Main() {
   return (
-    <div className="justify-center items-center bg-red-50">
+    <div className="flex justify-center h-screen items-center">
       Hello from StudioTrap!
     </div>
   );
