@@ -5,6 +5,8 @@ import { Button } from "../components/ui/button";
 import Link from "next/link";
 import AdvancedSearchBar from "../components/AdvancedSearchBar";
 
+import { FaUserCircle } from "react-icons/fa";
+
 export default function Navbar() {
   const { data: session } = useSession();
 
@@ -33,8 +35,9 @@ export default function Navbar() {
           </Link>
           <Link
             href="/profile"
-            className="text-gray-700 hover:text-gray-900 font-medium mr-9 "
+            className="text-gray-700 hover:text-gray-900 font-medium flex items-center mr-9"
           >
+            <FaUserCircle className="text-2xl mr-2" /> {/* Profile Icon */}
             Profile
           </Link>
         </div>

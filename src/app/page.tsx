@@ -5,31 +5,6 @@ import { getServerAuthSession } from "~/server/auth";
 export default async function Home() {
   const session = await getServerAuthSession();
 
-  // Sample data for the cards
-  const studios = [
-    {
-      image: "/homestudio.jpg",
-      title: "Modern Recording Studio",
-      rating: "4.9",
-      details: "Professional studio · 2 hours minimum",
-      price: "$50",
-    },
-    {
-      image: "/homestudio.jpg",
-      title: "Cozy Home Studio",
-      rating: "4.7",
-      details: "Home studio · Flexible hours",
-      price: "$30",
-    },
-    {
-      image: "/homestudio.jpg",
-      title: "Luxury Music Studio",
-      rating: "5.0",
-      details: "High-end equipment · Great location",
-      price: "$80",
-    },
-  ];
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff] text-white">
       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">

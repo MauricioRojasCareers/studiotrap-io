@@ -77,7 +77,7 @@ export default function AdvancedSearchBar() {
           {showGuestDropdown && (
             <div className="absolute top-full mt-2 z-50 bg-white shadow-lg rounded-lg p-4">
               <div className="flex items-center justify-between">
-                <span>Guests</span>
+                <span>Guests: </span>
                 <div className="flex items-center">
                   <button
                     onClick={() => setGuests(guests > 1 ? guests - 1 : 1)}
