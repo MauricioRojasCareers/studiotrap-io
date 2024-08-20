@@ -17,6 +17,11 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
+
+  images: {
+    domains: ["lh3.googleusercontent.com"], // Add the external image domain here
+  },
+
   transpilePackages: ["geist"],
 };
 
