@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   FaSearch,
   FaUser,
@@ -21,10 +21,30 @@ export default function AdvancedSearchBar() {
   const [guests, setGuests] = useState(1);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showGuestDropdown, setShowGuestDropdown] = useState(false);
+  const guestDropdownRef = useRef<HTMLDivElement>(null);
 
   const handleSelect = (ranges: any) => {
     setDateRange([ranges.selection]);
   };
+
+  // Function to handle clicks outside the dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        guestDropdownRef.current &&
+        !guestDropdownRef.current.contains(event.target as Node)
+      ) {
+        setShowGuestDropdown(false);
+      }
+    };
+
+    // Add event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Remove event listener on cleanup
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [guestDropdownRef]);
 
   return (
     <div className="w-full max-w-4xl mx-auto py-4">
@@ -42,53 +62,62 @@ export default function AdvancedSearchBar() {
         </div>
 
         {/* Date Picker */}
-        <div
-          className="flex items-center border-b md:border-b-0 md:border-r border-gray-200 px-4 py-2 relative cursor-pointer w-full md:w-auto"
-          onClick={() => setShowDatePicker(!showDatePicker)}
-        >
-          <FaCalendarAlt className="text-gray-500 mr-2" />
-          <span className="text-gray-700">
-            {`${dateRange[0]?.startDate?.toDateString() || ""} - ${
-              dateRange[0]?.endDate?.toDateString() || ""
-            }`}
-          </span>
+        <div className="relative">
+          <div
+            className="flex items-center border-b md:border-b-0 md:border-r border-gray-200 px-4 py-2 cursor-pointer w-full md:w-auto"
+            onClick={() => setShowDatePicker(!showDatePicker)}
+          >
+            <FaCalendarAlt className="text-gray-500 mr-2" />
+            <span className="text-gray-700">
+              {`${dateRange[0]?.startDate?.toDateString() || ""} - ${
+                dateRange[0]?.endDate?.toDateString() || ""
+              }`}
+            </span>
+          </div>
 
           {showDatePicker && (
-            <div className="absolute top-full mt-2 z-50 bg-white shadow-lg rounded-lg">
+            <div
+              className="absolute top-full mt-2 z-50 bg-white shadow-lg rounded-lg"
+              onClick={(e) => e.stopPropagation()}
+            >
               <DateRange
                 ranges={dateRange}
                 onChange={handleSelect}
                 moveRangeOnFirstSelection={false}
-                rangeColors={["#FD5B61"]}
+                rangeColors={["#b354e7"]}
+                minDate={new Date()} // This prevents selecting dates before today
               />
             </div>
           )}
         </div>
 
         {/* Guests Dropdown */}
-        <div
-          className="flex items-center border-b md:border-b-0 md:border-r border-gray-200 px-4 py-2 relative cursor-pointer w-full md:w-auto"
-          onClick={() => setShowGuestDropdown(!showGuestDropdown)}
-        >
-          <FaUser className="text-gray-500 mr-2" />
-          <span className="text-gray-700">
-            {guests} Guest{guests > 1 && "s"}
-          </span>
+        <div className="relative" ref={guestDropdownRef}>
+          <div
+            className="flex items-center border-b md:border-b-0 md:border-r border-gray-200 px-4 py-2 cursor-pointer w-full md:w-auto"
+            onClick={() => setShowGuestDropdown(!showGuestDropdown)}
+          >
+            <FaUser className="text-gray-500 mr-2" />
+            <span className="text-gray-700">
+              {guests} Guest{guests > 1 && "s"}
+            </span>
+          </div>
+
           {showGuestDropdown && (
             <div className="absolute top-full mt-2 z-50 bg-white shadow-lg rounded-lg p-4">
               <div className="flex items-center justify-between">
-                <span>Guests: </span>
+                <span className="text-gray-700 font-semibold">Guests: </span>
                 <div className="flex items-center">
                   <button
                     onClick={() => setGuests(guests > 1 ? guests - 1 : 1)}
-                    className="bg-gray-200 text-gray-800 px-2 py-1 rounded-full"
+                    className="bg-[#b354e7] text-white px-3 py-1 rounded-full text-lg"
                   >
                     -
                   </button>
                   <span className="mx-2">{guests}</span>
                   <button
                     onClick={() => setGuests(guests + 1)}
-                    className="bg-gray-200 text-gray-800 px-2 py-1 rounded-full"
+                    className="bg-[#b354e7] text-white px-3 py-1 rounded-full text-lg"
                   >
                     +
                   </button>
@@ -100,7 +129,7 @@ export default function AdvancedSearchBar() {
 
         {/* Search Button */}
         <div className="flex justify-center items-center w-full md:w-auto mt-2 md:mt-0">
-          <button className="bg-purple-500 text-white px-6 py-2 rounded-full flex items-center w-full md:w-auto">
+          <button className="bg-[#b354e7] text-white px-6 py-2 rounded-full flex items-center w-full md:w-auto">
             <FaSearch className="mr-2" />
             Search
           </button>
