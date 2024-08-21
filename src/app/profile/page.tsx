@@ -16,10 +16,10 @@ export default async function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-purple-100">
       <div className="container mx-auto flex flex-col md:flex-row px-4 py-8">
         {/* Sidebar */}
-        <aside className="w-full md:w-1/4 bg-white p-6 rounded-lg shadow-lg mb-8 md:mb-0">
+        <aside className="w-full md:w-1/4 bg-purple p-6 rounded-lg shadow-lg mb-8 md:mb-0">
           <div className="flex flex-col items-center mb-6">
             <Image
               src={session.user?.image || "/default-avatar.png"}
@@ -68,7 +68,7 @@ export default async function ProfilePage() {
         </aside>
 
         {/* Profile Content */}
-        <main className="w-full md:w-3/4 bg-white p-6 rounded-lg shadow-lg">
+        <main className="w-full md:w-3/4 bg-white-500 p-6 rounded-lg shadow-lg border-4 border-purple-700">
           <h1 className="text-2xl font-bold text-gray-800 mb-6">
             Profile Overview
           </h1>
