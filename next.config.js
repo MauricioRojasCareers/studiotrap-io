@@ -19,7 +19,13 @@ const config = {
   },
 
   images: {
-    domains: ["lh3.googleusercontent.com"], // Add the external image domain here
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        pathname: "/**",
+      },
+    ],
   },
 
   transpilePackages: ["geist"],

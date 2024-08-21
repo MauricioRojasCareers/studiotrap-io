@@ -28,26 +28,26 @@ export default function AdvancedSearchBar() {
 
   return (
     <div className="w-full max-w-4xl mx-auto py-4">
-      <div className="flex items-center border border-gray-300 rounded-full shadow-md p-2 bg-white">
+      <div className="flex flex-col md:flex-row items-center border border-gray-300 rounded-full shadow-md p-2 bg-white">
         {/* Location Input */}
-        <div className="flex items-center border-r border-gray-200 pr-4">
+        <div className="flex items-center border-b md:border-b-0 md:border-r border-gray-200 pb-2 md:pb-0 md:pr-4 w-full md:w-auto">
           <FaMapMarkerAlt className="text-gray-500 mr-2" />
           <input
             type="text"
             placeholder="Where are you going?"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            className="focus:outline-none"
+            className="focus:outline-none w-full"
           />
         </div>
 
         {/* Date Picker */}
         <div
-          className="flex items-center border-r border-gray-200 px-4 relative cursor-pointer"
+          className="flex items-center border-b md:border-b-0 md:border-r border-gray-200 px-4 py-2 relative cursor-pointer w-full md:w-auto"
           onClick={() => setShowDatePicker(!showDatePicker)}
         >
           <FaCalendarAlt className="text-gray-500 mr-2" />
-          <span>
+          <span className="text-gray-700">
             {`${dateRange[0]?.startDate?.toDateString() || ""} - ${
               dateRange[0]?.endDate?.toDateString() || ""
             }`}
@@ -67,11 +67,11 @@ export default function AdvancedSearchBar() {
 
         {/* Guests Dropdown */}
         <div
-          className="flex items-center border-r border-gray-200 px-4 relative cursor-pointer"
+          className="flex items-center border-b md:border-b-0 md:border-r border-gray-200 px-4 py-2 relative cursor-pointer w-full md:w-auto"
           onClick={() => setShowGuestDropdown(!showGuestDropdown)}
         >
           <FaUser className="text-gray-500 mr-2" />
-          <span>
+          <span className="text-gray-700">
             {guests} Guest{guests > 1 && "s"}
           </span>
           {showGuestDropdown && (
@@ -99,8 +99,8 @@ export default function AdvancedSearchBar() {
         </div>
 
         {/* Search Button */}
-        <div className="flex justify-center items-center">
-          <button className="bg-purple-500 text-white px-6 py-2 rounded-full flex items-center">
+        <div className="flex justify-center items-center w-full md:w-auto mt-2 md:mt-0">
+          <button className="bg-purple-500 text-white px-6 py-2 rounded-full flex items-center w-full md:w-auto">
             <FaSearch className="mr-2" />
             Search
           </button>
