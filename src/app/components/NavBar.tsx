@@ -11,7 +11,7 @@ export default function Navbar() {
   const { data: session } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  if (!session) return null; // Don't render if the user is not authenticated
+  // if (!session) return null; // Don't render if the user is not authenticated
 
   return (
     <nav className="border-b border-gray-200 py-3 bg-white shadow-sm sticky top-0 z-50">
@@ -48,13 +48,13 @@ export default function Navbar() {
           >
             Dashboard
           </Link>
-          <Link
+          {/* <Link
             href="/profile"
             className="text-gray-700 hover:text-gray-900 font-medium flex items-center"
-          >
-            <FaUserCircle className="text-2xl mr-2" /> {/* Profile Icon */}
-            Profile
-          </Link>
+          > */}
+          <FaUserCircle className="text-2xl mr-2" /> {/* Profile Icon */}
+          {session ? <div>Profile</div> : <div>Log In</div>}
+          {/* </Link> */}
         </div>
 
         {/* Mobile Menu (Visible only when the hamburger menu is open) */}
