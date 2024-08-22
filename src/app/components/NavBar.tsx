@@ -1,6 +1,6 @@
 "use client"; // Ensure this component is treated as a Client Component
 
-import { useSession, signOut } from "next-auth/react";
+import { useSession, signOut, signIn } from "next-auth/react";
 import { useState } from "react";
 import { Button } from "../components/ui/button";
 import Link from "next/link";
@@ -11,7 +11,14 @@ export default function Navbar() {
   const { data: session } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // if (!session) return null; // Don't render if the user is not authenticated
+  const handleSign = () => {
+    setIsMenuOpen(false);
+    if (session) {
+      signOut();
+    } else {
+      signIn();
+    }
+  };
 
   return (
     <nav className="border-b border-gray-200 py-3 bg-white shadow-sm sticky top-0 z-50">
@@ -70,29 +77,31 @@ export default function Navbar() {
                 <AdvancedSearchBar />
               </div>
 
-              <Link
-                href="/dashboard"
-                className="text-gray-700 hover:text-gray-900 font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Dashboard
-              </Link>
-              <Link
-                href="/profile"
-                className="text-gray-700 hover:text-gray-900 font-medium flex items-center"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <FaUserCircle className="text-2xl mr-2" /> {/* Profile Icon */}
-                Profile
-              </Link>
+              {session && (
+                <>
+                  <Link
+                    href="/dashboard"
+                    className="text-gray-700 hover:text-gray-900 font-medium"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Dashboard
+                  </Link>
+                  <Link
+                    href="/profile"
+                    className="text-gray-700 hover:text-gray-900 font-medium flex items-center"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <FaUserCircle className="text-2xl mr-2" />{" "}
+                    {/* Profile Icon */}
+                    Profile
+                  </Link>
+                </>
+              )}
               <Button
-                variant="destructive"
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  signOut();
-                }}
+                variant={session ? "destructive" : "default"}
+                onClick={handleSign}
               >
-                Sign Out
+                {session ? "Sign Out" : "Sign In"}
               </Button>
             </div>
           </div>
