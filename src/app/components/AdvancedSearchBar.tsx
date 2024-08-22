@@ -28,9 +28,9 @@ export default function AdvancedSearchBar() {
 
   return (
     <div className="w-full max-w-4xl mx-auto py-4">
-      <div className="flex flex-col md:flex-row items-center border border-gray-300 rounded-full shadow-md p-2 bg-white">
+      <div className="flex flex-col md:flex-row items-center border border-gray-300 md:rounded-full shadow-md p-2 bg-white">
         {/* Location Input */}
-        <div className="flex items-center border-b md:border-b-0 md:border-r border-gray-200 pb-2 md:pb-0 md:pr-4 w-full md:w-auto">
+        <div className="flex items-center border-b md:border-b-0 md:border-r w-full px-4 py-2 md:w-auto border-gray-200  ">
           <FaMapMarkerAlt className="text-gray-500 mr-2" />
           <input
             type="text"
@@ -47,7 +47,7 @@ export default function AdvancedSearchBar() {
           onClick={() => setShowDatePicker(!showDatePicker)}
         >
           <FaCalendarAlt className="text-gray-500 mr-2" />
-          <span className="text-gray-700">
+          <span className=" md:hidden lg:inline text-gray-700">
             {`${dateRange[0]?.startDate?.toDateString() || ""} - ${
               dateRange[0]?.endDate?.toDateString() || ""
             }`}
@@ -71,7 +71,7 @@ export default function AdvancedSearchBar() {
           onClick={() => setShowGuestDropdown(!showGuestDropdown)}
         >
           <FaUser className="text-gray-500 mr-2" />
-          <span className="text-gray-700">
+          <span className="text-gray-700 text-center">
             {guests} Guest{guests > 1 && "s"}
           </span>
           {showGuestDropdown && (
@@ -99,8 +99,8 @@ export default function AdvancedSearchBar() {
         </div>
 
         {/* Search Button */}
-        <div className="flex justify-center items-center w-full md:w-auto mt-2 md:mt-0">
-          <button className="bg-purple-500 text-white px-6 py-2 rounded-full flex items-center w-full md:w-auto">
+        <div className="flex justify-center items-center w-full px-2 py-2 md:w-auto md:mx-auto ">
+          <button className="bg-purple-500 text-white px-6 py-2 rounded-full flex items-center w-full ">
             <FaSearch className="mr-2" />
             Search
           </button>

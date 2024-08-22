@@ -66,7 +66,7 @@ export default function Navbar() {
           <div className="absolute top-full left-0 w-full bg-white shadow-lg md:hidden">
             <div className="flex flex-col p-4 space-y-4">
               {/* Show the Search Bar on Mobile */}
-              <div className="flex flex-grow mb-4">
+              <div className="flex mb-4">
                 <AdvancedSearchBar />
               </div>
 
