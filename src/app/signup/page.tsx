@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation"; // Import from "next/navigation" instead of "next/router"
+import { motion } from "framer-motion"; // Import Framer Motion
 
 export default function SignUp() {
   const router = useRouter();
@@ -23,16 +24,31 @@ export default function SignUp() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff] text-white">
       {/* Studio Trap Title */}
-      <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem] mb-4">
+      <motion.h1
+        className="text-5xl font-extrabold tracking-tight sm:text-[5rem] mb-4"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
         Studio <span className="text-[#33134A]">Trap</span>
-      </h1>
+      </motion.h1>
 
       {/* Subtitle */}
-      <p className="text-xl font-medium text-white mb-8">
+      <motion.p
+        className="text-xl font-medium text-white mb-8"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.8 }}
+      >
         The Airbnb for home studios
-      </p>
+      </motion.p>
 
-      <div className="bg-white/10 p-8 rounded-lg shadow-lg max-w-md w-full hover:bg-white/20 transition-colors">
+      <motion.div
+        className="bg-white/10 p-8 rounded-lg shadow-lg max-w-md w-full hover:bg-white/20 transition-colors"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.5, duration: 0.8 }}
+      >
         <h1 className="text-3xl font-bold text-center mb-6">Sign Up</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -84,22 +100,26 @@ export default function SignUp() {
             />
           </div>
           <div className="flex justify-between mt-6">
-            <button
+            <motion.button
               type="button"
               onClick={handleCancel}
               className="bg-white/10 text-white font-bold py-2 px-4 rounded-lg hover:bg-white/20 transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
               Cancel
-            </button>
-            <button
+            </motion.button>
+            <motion.button
               type="submit"
               className="bg-white/10 text-white font-bold py-2 px-4 rounded-lg hover:bg-white/20 transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
               Submit
-            </button>
+            </motion.button>
           </div>
         </form>
-      </div>
+      </motion.div>
     </div>
   );
 }

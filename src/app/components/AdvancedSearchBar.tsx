@@ -129,7 +129,7 @@ export default function AdvancedSearchBar() {
 
         {/* Search Button */}
         <div className="flex justify-center items-center w-full md:w-auto mt-2 md:mt-0">
-          <button className="bg-[#b354e7] text-white px-6 py-2 rounded-full flex items-center w-full md:w-auto">
+          <button className="bg-white/10 text-[#b354e7] px-6 py-2 rounded-full flex items-center w-full md:w-auto hover:bg-white/20 transition-transform duration-300 hover:scale-105 hover:shadow-[0px_0px_20px_rgba(0,0,0,0.15)]">
             <FaSearch className="mr-2" />
             Search
           </button>
