@@ -42,19 +42,23 @@ export default function Navbar() {
 
         {/* Navigation Links (Hidden on mobile, shown on larger screens) */}
         <div className="hidden md:flex space-x-8 items-center">
+          {session ? (
+            <Link
+              href="/dashboard"
+              className="text-gray-700 hover:text-gray-900 font-medium"
+            >
+              Dashboard
+            </Link>
+          ) : null}
+
           <Link
-            href="/dashboard"
-            className="text-gray-700 hover:text-gray-900 font-medium"
-          >
-            Dashboard
-          </Link>
-          {/* <Link
             href="/profile"
             className="text-gray-700 hover:text-gray-900 font-medium flex items-center"
-          > */}
-          <FaUserCircle className="text-2xl mr-2" /> {/* Profile Icon */}
-          {session ? <div>Profile</div> : <div>Log In</div>}
-          {/* </Link> */}
+          >
+            {session ? <FaUserCircle className="text-2xl mr-2" /> : null}{" "}
+            {/* Profile Icon */}
+            {session ? <div>Profile</div> : <div>Log In</div>}
+          </Link>
         </div>
 
         {/* Mobile Menu (Visible only when the hamburger menu is open) */}
