@@ -52,7 +52,7 @@ export default function Navbar() {
           ) : null}
 
           <Link
-            href="/profile"
+            href="/api/auth/signin"
             className="text-gray-700 hover:text-gray-900 font-medium flex items-center"
           >
             {session ? <FaUserCircle className="text-2xl mr-2" /> : null}{" "}
