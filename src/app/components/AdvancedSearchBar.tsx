@@ -21,13 +21,16 @@ export default function AdvancedSearchBar() {
   const [guests, setGuests] = useState(1);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showGuestDropdown, setShowGuestDropdown] = useState(false);
+
+  // Refs to detect clicks outside the calendar and guest dropdown
   const guestDropdownRef = useRef<HTMLDivElement>(null);
+  const calendarRef = useRef<HTMLDivElement>(null);
 
   const handleSelect = (ranges: any) => {
     setDateRange([ranges.selection]);
   };
 
-  // Function to handle clicks outside the dropdown
+  // Function to handle clicks outside the dropdowns
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -35,6 +38,13 @@ export default function AdvancedSearchBar() {
         !guestDropdownRef.current.contains(event.target as Node)
       ) {
         setShowGuestDropdown(false);
+      }
+
+      if (
+        calendarRef.current &&
+        !calendarRef.current.contains(event.target as Node)
+      ) {
+        setShowDatePicker(false);
       }
     };
 
@@ -44,7 +54,7 @@ export default function AdvancedSearchBar() {
       // Remove event listener on cleanup
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [guestDropdownRef]);
+  }, [guestDropdownRef, calendarRef]);
 
   return (
     <div className="w-full max-w-4xl mx-auto py-4">
@@ -62,7 +72,7 @@ export default function AdvancedSearchBar() {
         </div>
 
         {/* Date Picker */}
-        <div className="relative">
+        <div className="relative" ref={calendarRef}>
           <div
             className="flex items-center border-b md:border-b-0 md:border-r border-gray-200 px-4 py-2 cursor-pointer w-full md:w-auto"
             onClick={() => setShowDatePicker(!showDatePicker)}
