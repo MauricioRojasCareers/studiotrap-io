@@ -1,6 +1,7 @@
 import Link from "next/link";
 import StudioCard from "~/app/components/StudioCard"; // Adjust the path if needed
 import { getServerAuthSession } from "~/server/auth";
+import Test from "./components/Testing";
 
 export default async function Home() {
   const session = await getServerAuthSession();

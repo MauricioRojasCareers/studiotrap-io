@@ -58,9 +58,9 @@ export default function AdvancedSearchBar() {
 
   return (
     <div className="w-full max-w-4xl mx-auto py-4">
-      <div className="flex flex-col md:flex-row items-center border border-gray-300 rounded-full shadow-md p-2 bg-white">
+      <div className="flex flex-col md:flex-row items-center border border-gray-300 md:rounded-full shadow-md p-2 bg-white">
         {/* Location Input */}
-        <div className="flex items-center border-b md:border-b-0 md:border-r border-gray-200 pb-2 md:pb-0 md:pr-4 w-full md:w-auto">
+        <div className="flex items-center border-b md:border-b-0 md:border-r w-full px-4 py-2 md:w-auto border-gray-200  ">
           <FaMapMarkerAlt className="text-gray-500 mr-2" />
           <input
             type="text"
@@ -84,7 +84,6 @@ export default function AdvancedSearchBar() {
               }`}
             </span>
           </div>
-
           {showDatePicker && (
             <div
               className="absolute top-full mt-2 z-50 bg-white shadow-lg rounded-lg"
@@ -112,7 +111,6 @@ export default function AdvancedSearchBar() {
               {guests} Guest{guests > 1 && "s"}
             </span>
           </div>
-
           {showGuestDropdown && (
             <div className="absolute top-full mt-2 z-50 bg-white shadow-lg rounded-lg p-4">
               <div className="flex items-center justify-between">

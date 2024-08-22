@@ -1,18 +1,15 @@
-// src/app/components/ClientWrapper.tsx (Client Component)
-"use client"; // Mark this as a client-side component
+"use client";
 
 import { SessionProvider } from "next-auth/react";
-import Navbar from "./NavBar";
+import { Session } from "next-auth";
 
-export default function ClientWrapper({
-  children,
-}: {
+interface ClientWrapperProps {
   children: React.ReactNode;
-}) {
-  return (
-    <SessionProvider>
-      <Navbar />
-      {children}
-    </SessionProvider>
-  );
+  session: Session | null;
 }
+
+const ClientWrapper = ({ children, session }: ClientWrapperProps) => {
+  return <SessionProvider session={session}>{children}</SessionProvider>;
+};
+
+export default ClientWrapper;
