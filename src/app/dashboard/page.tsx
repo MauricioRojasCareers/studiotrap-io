@@ -15,7 +15,7 @@ import { redirect } from "next/navigation";
 // Sidebar component
 function Sidebar() {
   return (
-    <aside className="w-48 bg-[#ffd6ff] p-4 shadow-md fixed h-full">
+    <aside className="bg-[#ffd6ff] p-4 m-4 mb-6 md:m-0 shadow-md md:w-48 md:fixed md:h-full">
       <div className="flex items-center space-x-3 mb-6">
         <div className="bg-[#33134A] rounded-full w-8 h-8"></div>
         <h1 className="font-semibold text-md text-white">Mitte Studios</h1>
@@ -49,15 +49,6 @@ function Sidebar() {
           </li>
         </ul>
       </nav>
-      <div className="absolute bottom-4 p-4">
-        <div className="flex items-center space-x-3">
-          <div className="bg-[#33134A] rounded-full w-8 h-8"></div>
-          <div>
-            <p className="font-semibold text-white text-sm">John Appleseed</p>
-            <p className="text-white text-xs">john@example.com</p>
-          </div>
-        </div>
-      </div>
     </aside>
   );
 }
@@ -66,14 +57,14 @@ function Sidebar() {
 export default async function Dashboard() {
   const session = await getServerAuthSession();
 
-  if (!session) redirect("/")
+  if (!session) redirect("/");
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff]">
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff]">
       {/* Sidebar */}
       <Sidebar />
       {/* Main Dashboard Content */}
-      <div className="flex-1 max-w-5xl p-6 m-4 ml-56 bg-white/10 shadow-lg rounded-2xl transition-transform duration-300 hover:scale-105 hover:shadow-[0px_0px_20px_rgba(0,0,0,0.15)]">
+      <div className="flex-1 max-w-5xl p-6 m-4 md:ml-56 bg-white/10 shadow-lg rounded-2xl transition-transform duration-300 hover:scale-105 hover:shadow-[0px_0px_20px_rgba(0,0,0,0.15)]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
           {/* New Bookings */}
           <div className="bg-white/10 shadow-md rounded-lg p-4 hover:bg-white/20 transition-transform duration-300 hover:scale-105 hover:shadow-[0px_0px_20px_rgba(0,0,0,0.15)]">

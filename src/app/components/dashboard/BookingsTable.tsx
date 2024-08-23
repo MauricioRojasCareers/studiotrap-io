@@ -19,9 +19,9 @@ export default function BookingsTable() {
   ];
 
   return (
-    <div className="bg-white shadow rounded-lg p-6">
+    <div className="bg-white shadow rounded-lg p-6 overflow-auto">
       <h2 className="text-xl font-bold mb-4">Latest Bookings</h2>
-      <table className="min-w-full divide-y divide-gray-200">
+      <table className="min-w-full divide-y divide-gray-200 overflow-auto">
         <thead>
           <tr>
             <th className="px-4 py-2 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
@@ -41,10 +41,16 @@ export default function BookingsTable() {
         <tbody className="bg-white divide-y divide-gray-200">
           {bookings.map((booking) => (
             <tr key={booking.id}>
-              <td className="px-4 py-2 whitespace-nowrap">{booking.name}</td>
-              <td className="px-4 py-2 whitespace-nowrap">{booking.date}</td>
-              <td className="px-4 py-2 whitespace-nowrap">{booking.checkIn}</td>
-              <td className="px-4 py-2 whitespace-nowrap">
+              <td className="px-4 py-2 text-sm whitespace-nowrap">
+                {booking.name}
+              </td>
+              <td className="px-4 py-2 text-sm whitespace-nowrap">
+                {booking.date}
+              </td>
+              <td className="px-4 py-2 text-sm whitespace-nowrap">
+                {booking.checkIn}
+              </td>
+              <td className="px-4 py-2 text-sm whitespace-nowrap">
                 {booking.timeSpent}
               </td>
             </tr>

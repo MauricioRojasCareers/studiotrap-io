@@ -19,7 +19,7 @@ export default function CustomerDetails() {
   ];
 
   return (
-    <div className="bg-white shadow rounded-lg p-6">
+    <div className="bg-white shadow rounded-lg p-6 overflow-auto">
       <h2 className="text-xl font-bold mb-4">Customer Details</h2>
       <table className="min-w-full divide-y divide-gray-200">
         <thead>
@@ -41,14 +41,16 @@ export default function CustomerDetails() {
         <tbody className="bg-white divide-y divide-gray-200">
           {customers.map((customer) => (
             <tr key={customer.id}>
-              <td className="px-4 py-2 whitespace-nowrap">{customer.name}</td>
-              <td className="px-4 py-2 whitespace-nowrap">
+              <td className="px-4 py-2 text-sm whitespace-nowrap">
+                {customer.name}
+              </td>
+              <td className="px-4 py-2 text-sm whitespace-nowrap">
                 {customer.dateOfUse}
               </td>
-              <td className="px-4 py-2 whitespace-nowrap">
+              <td className="px-4 py-2 text-sm whitespace-nowrap">
                 {customer.checkIn}
               </td>
-              <td className="px-4 py-2 whitespace-nowrap">
+              <td className="px-4 py-2 text-sm whitespace-nowrap">
                 {customer.timeSpent}
               </td>
             </tr>
