@@ -10,7 +10,6 @@ import Image from "next/image";
 
 export default function Navbar() {
   const { data: session } = useSession();
-  console.log(session);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleSign = () => {

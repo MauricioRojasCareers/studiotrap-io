@@ -1,19 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { getServerAuthSession } from "~/server/auth";
 
 export default async function ProfilePage() {
   const session = await getServerAuthSession();
 
-  if (!session) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-gray-100">
-        <h1 className="text-3xl font-bold text-gray-800">
-          You need to be logged in to view your profile.
-        </h1>
-      </div>
-    );
-  }
+  if (!session) redirect("/");
 
   return (
     <div className="min-h-screen bg-purple-100">

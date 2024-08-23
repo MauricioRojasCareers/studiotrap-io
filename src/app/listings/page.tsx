@@ -3,6 +3,7 @@ import StudioCard from "~/app/components/StudioCard"; // Adjust the path as need
 export default function ListingsPage() {
   const studios = [
     {
+      id: 1,
       image: "/homestudio.jpg",
       title: "Modern Recording Studio",
       rating: "4.9",
@@ -10,6 +11,7 @@ export default function ListingsPage() {
       price: "$50",
     },
     {
+      id: 2,
       image: "/homestudio.jpg",
       title: "Cozy Home Studio",
       rating: "4.7",
@@ -17,6 +19,7 @@ export default function ListingsPage() {
       price: "$30",
     },
     {
+      id: 3,
       image: "/homestudio.jpg",
       title: "Luxury Music Studio",
       rating: "5.0",
@@ -30,15 +33,8 @@ export default function ListingsPage() {
       <div className="container mx-auto px-4">
         <h1 className="text-4xl font-bold mb-8">Available Studios</h1>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {studios.map((studio, index) => (
-            <StudioCard
-              key={index}
-              image={studio.image}
-              title={studio.title}
-              rating={studio.rating}
-              details={studio.details}
-              price={studio.price}
-            />
+          {studios.map((studio) => (
+            <StudioCard key={studio.id} {...studio} />
           ))}
         </div>
       </div>
