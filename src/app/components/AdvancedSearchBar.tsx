@@ -72,15 +72,15 @@ export default function AdvancedSearchBar() {
         </div>
 
         {/* Date Picker */}
-        <div className="relative" ref={calendarRef}>
+        <div className="relative w-full md:w-auto" ref={calendarRef}>
           <div
             className="flex items-center border-b md:border-b-0 md:border-r border-gray-200 px-4 py-2 cursor-pointer w-full md:w-auto"
             onClick={() => setShowDatePicker(!showDatePicker)}
           >
-            <FaCalendarAlt className="text-gray-500 mr-2" />
-            <span className="text-gray-700">
-              {`${dateRange[0]?.startDate?.toDateString() || ""} - ${
-                dateRange[0]?.endDate?.toDateString() || ""
+            <FaCalendarAlt className="text-gray-500 mr-2 " />
+            <span className="text-gray-700 ">
+              {`${dateRange[0]?.startDate?.toDateString() ?? ""} - ${
+                dateRange[0]?.endDate?.toDateString() ?? ""
               }`}
             </span>
           </div>
@@ -101,20 +101,20 @@ export default function AdvancedSearchBar() {
         </div>
 
         {/* Guests Dropdown */}
-        <div className="relative" ref={guestDropdownRef}>
+        <div className="relative w-full md:w-auto" ref={guestDropdownRef}>
           <div
             className="flex items-center border-b md:border-b-0 md:border-r border-gray-200 px-4 py-2 cursor-pointer w-full md:w-auto"
             onClick={() => setShowGuestDropdown(!showGuestDropdown)}
           >
             <FaUser className="text-gray-500 mr-2" />
-            <span className="text-gray-700">
+            <span className="text-gray-700 text-center">
               {guests} Guest{guests > 1 && "s"}
             </span>
           </div>
           {showGuestDropdown && (
             <div className="absolute top-full mt-2 z-50 bg-white shadow-lg rounded-lg p-4">
-              <div className="flex items-center justify-between">
-                <span className="text-gray-700 font-semibold">Guests: </span>
+              <div className="flex items-center justify-between gap-1">
+                <p className="text-gray-700 font-semibold">Guests:</p>
                 <div className="flex items-center">
                   <button
                     onClick={() => setGuests(guests > 1 ? guests - 1 : 1)}

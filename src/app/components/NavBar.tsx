@@ -60,7 +60,7 @@ export default function Navbar() {
 
           <Link
             href={session ? "/profile" : "/api/auth/signin"}
-            className="text-gray-700 hover:text-gray-900 font-medium flex items-center"
+            className="text-gray-700 hover:text-gray-900 font-medium flex items-center text-center"
           >
             {session && <FaUserCircle className="text-2xl mr-2" />}{" "}
             {/* Profile Icon */}
