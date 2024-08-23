@@ -44,5 +44,5 @@ export async function signUpAction(
     };
   }
 
-  redirect("/");
+  redirect("/api/auth/signin");
 }
