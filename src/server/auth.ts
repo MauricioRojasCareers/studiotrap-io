@@ -1,4 +1,5 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaClient } from "@prisma/client";
 import { randomBytes, randomUUID } from "crypto";
 import {
@@ -25,7 +26,7 @@ declare module "next-auth" {
   }
 }
 
-const prisma = new PrismaClient();
+export const prisma = new PrismaClient();
 
 /**
  * Options for NextAuth.js used to configure adapters, providers, callbacks, etc.
@@ -34,13 +35,48 @@ const prisma = new PrismaClient();
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    session: ({ session }) => session,
+    jwt: ({ token }) => {
+      return token;
+    },
   },
   adapter: PrismaAdapter(prisma) as Adapter,
   providers: [
     GoogleProvider({
       clientId: env.GOOGLE_ID,
       clientSecret: env.CLIENT_SECRET,
+    }),
+    CredentialsProvider({
+      credentials: {
+        email: {
+          label: "Email",
+          type: "text",
+          placeholder: "jsmith@gmail.com",
+        },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials, req) {
+        // Add logic here to look up the user from the credentials supplied
+
+        if (!credentials) return null;
+
+        const { email, password } = credentials;
+
+        let user = null;
+
+        try {
+          user = await prisma.user.findFirst({
+            where: { email },
+          });
+        } catch (err: unknown) {
+          return null;
+        }
+
+        if (!user) return null;
+
+        if (!user.password || password !== user.password) return null;
+
+        return user;
+      },
     }),
     /**
      * ...add more providers here.
@@ -59,7 +95,7 @@ export const authOptions: NextAuthOptions = {
     // You can still force a JWT session by explicitly defining `"jwt"`.
     // When using `"database"`, the session cookie will only contain a `sessionToken` value,
     // which is used to look up the session in the database.
-    strategy: "database",
+    strategy: "jwt",
 
     // Seconds - How long until an idle session expires and is no longer valid.
     maxAge: 30 * 24 * 60 * 60, // 30 days
