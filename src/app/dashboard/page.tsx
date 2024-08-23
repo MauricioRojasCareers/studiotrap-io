@@ -9,7 +9,8 @@ import {
 import BookingsTable from "../components/dashboard/BookingsTable";
 import CustomerDetails from "../components/dashboard/CustomerDetails";
 import RevenueCard from "../components/dashboard/RevenueCard";
-import Link from "next/link";
+import { getServerAuthSession } from "~/server/auth";
+import { redirect } from "next/navigation";
 
 // Sidebar component
 function Sidebar() {
@@ -62,7 +63,11 @@ function Sidebar() {
 }
 
 // Main Dashboard
-export default function Dashboard() {
+export default async function Dashboard() {
+  const session = await getServerAuthSession();
+
+  if (!session) redirect("/")
+
   return (
     <div className="flex min-h-screen bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff]">
       {/* Sidebar */}
