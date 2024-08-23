@@ -59,12 +59,12 @@ export default function Navbar() {
           ) : null}
 
           <Link
-            href="/api/auth/signin"
+            href={session ? "/profile" : "/api/auth/signin"}
             className="text-gray-700 hover:text-gray-900 font-medium flex items-center"
           >
-            {session ? <FaUserCircle className="text-2xl mr-2" /> : null}{" "}
+            {session && <FaUserCircle className="text-2xl mr-2" />}{" "}
             {/* Profile Icon */}
-            {session ? <div>Profile</div> : <div>Log In</div>}
+            <div>{session ? "Profile" : "Log In"}</div>
           </Link>
         </div>
 
