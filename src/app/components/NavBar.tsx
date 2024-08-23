@@ -6,9 +6,11 @@ import { Button } from "../components/ui/button";
 import Link from "next/link";
 import AdvancedSearchBar from "../components/AdvancedSearchBar";
 import { FaUserCircle, FaBars, FaTimes } from "react-icons/fa";
+import Image from "next/image";
 
 export default function Navbar() {
   const { data: session } = useSession();
+  console.log(session);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleSign = () => {
@@ -62,9 +64,19 @@ export default function Navbar() {
             href={session ? "/profile" : "/api/auth/signin"}
             className="text-gray-700 hover:text-gray-900 font-medium flex items-center text-center"
           >
-            {session && <FaUserCircle className="text-2xl mr-2" />}{" "}
             {/* Profile Icon */}
-            <div>{session ? "Profile" : "Log In"}</div>
+            <div>
+              {session ? (
+                <Image
+                  src={session.user.image as string} // Type assertion to ensure TypeScript knows it's a string
+                  alt="User Profile"
+                  width={100}
+                  height={100}
+                />
+              ) : (
+                "Log In"
+              )}
+            </div>
           </Link>
         </div>
 
@@ -77,26 +89,29 @@ export default function Navbar() {
                 <AdvancedSearchBar />
               </div>
 
-              {session && (
-                <>
-                  <Link
-                    href="/dashboard"
-                    className="text-gray-700 hover:text-gray-900 font-medium"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Dashboard
-                  </Link>
-                  <Link
-                    href="/profile"
-                    className="text-gray-700 hover:text-gray-900 font-medium flex items-center"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <FaUserCircle className="text-2xl mr-2" />{" "}
-                    {/* Profile Icon */}
-                    Profile
-                  </Link>
-                </>
-              )}
+              <>
+                <Link
+                  href="/dashboard"
+                  className="text-gray-700 hover:text-gray-900 font-medium"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Dashboard
+                </Link>
+                <Link
+                  href="/profile"
+                  className="text-gray-700 hover:text-gray-900 font-medium flex items-center"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {session ? (
+                    <>
+                      <FaUserCircle className="text-2xl mr-2" />
+                      <div>Profile</div>
+                    </>
+                  ) : null}
+                  {/* Profile Icon */}
+                </Link>
+              </>
+
               <Button
                 variant={session ? "destructive" : "default"}
                 onClick={handleSign}
