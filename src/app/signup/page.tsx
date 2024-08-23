@@ -1,25 +1,32 @@
-"use client"; // Mark this component as a Client Component
+"use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation"; // Import from "next/navigation" instead of "next/router"
 import { motion } from "framer-motion"; // Import Framer Motion
+import { signUpAction } from "../actions";
+import { useFormState, useFormStatus } from "react-dom";
+
+// useFormState, useFormStaus, useActionState
+
+function SignUpSubmitButton() {
+  const { pending } = useFormStatus();
+  return (
+    <motion.button
+      disabled={pending}
+      type="submit"
+      className="bg-white/10 text-white font-bold py-2 px-4 rounded-lg hover:bg-white/20 transition-colors"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      {pending ? "Submitting..." : "Submit"}
+    </motion.button>
+  );
+}
 
 export default function SignUp() {
-  const router = useRouter();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle sign-up logic here, e.g., API call to create a new user
-    console.log({ firstName, lastName, email, password });
-  };
-
-  const handleCancel = () => {
-    router.push("/"); // Redirect to the home page or another page on cancel
-  };
+  const [state, formAction] = useFormState(signUpAction, {
+    name: "",
+    error: "",
+    status: false,
+  });
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff] text-white">
@@ -50,74 +57,67 @@ export default function SignUp() {
         transition={{ delay: 0.5, duration: 0.8 }}
       >
         <h1 className="text-3xl font-bold text-center mb-6">Sign Up</h1>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form action={formAction} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-white">
-              First Name
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-white"
+            >
+              Name
             </label>
             <input
+              id="name"
               type="text"
+              name="name"
+              placeholder="John Smith"
               className="w-full mt-1 p-2 rounded-lg bg-white text-black focus:outline-none"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-white">
-              Last Name
-            </label>
-            <input
-              type="text"
-              className="w-full mt-1 p-2 rounded-lg bg-white text-black focus:outline-none"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-white">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-white"
+            >
               Email
             </label>
             <input
+              id="email"
               type="email"
+              name="email"
+              placeholder="jsmith@gmail.com"
               className="w-full mt-1 p-2 rounded-lg bg-white text-black focus:outline-none"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-white">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-white"
+            >
               Password
             </label>
             <input
+              id="password"
+              name="password"
               type="password"
               className="w-full mt-1 p-2 rounded-lg bg-white text-black focus:outline-none"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
           <div className="flex justify-between mt-6">
             <motion.button
               type="button"
-              onClick={handleCancel}
+              onClick={() => {}}
               className="bg-white/10 text-white font-bold py-2 px-4 rounded-lg hover:bg-white/20 transition-colors"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
               Cancel
             </motion.button>
-            <motion.button
-              type="submit"
-              className="bg-white/10 text-white font-bold py-2 px-4 rounded-lg hover:bg-white/20 transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Submit
-            </motion.button>
+            <SignUpSubmitButton />
           </div>
+          {state.error && <div>{state.error}</div>}
         </form>
       </motion.div>
     </div>

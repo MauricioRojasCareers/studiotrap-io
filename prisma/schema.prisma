@@ -48,7 +48,8 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime? @map("email_verified")
-  image         String?
+  image         String?   @default("/studiotrap.ico")
+  password      String?
   accounts      Account[]
   sessions      Session[]
  
