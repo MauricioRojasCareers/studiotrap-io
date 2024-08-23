@@ -1,7 +1,6 @@
 import Link from "next/link";
 import StudioCard from "~/app/components/StudioCard"; // Adjust the path if needed
 import { getServerAuthSession } from "~/server/auth";
-import Test from "./components/Testing";
 
 export default async function Home() {
   const session = await getServerAuthSession();
@@ -9,9 +8,14 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff] text-white">
       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-        <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem] ">
+        <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
           Studio <span className="text-[#33134A]">Trap</span>
         </h1>
+
+        {/* Subtitle */}
+        <p className="text-xl font-medium text-white">
+          The Airbnb for home studios
+        </p>
 
         {/* Existing Links */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8 ">

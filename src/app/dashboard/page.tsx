@@ -9,7 +9,8 @@ import {
 import BookingsTable from "../components/dashboard/BookingsTable";
 import CustomerDetails from "../components/dashboard/CustomerDetails";
 import RevenueCard from "../components/dashboard/RevenueCard";
-import Link from "next/link";
+import { useState, useEffect } from "react";
+import { useAnimate, stagger } from "framer-motion";
 
 // Sidebar component
 function Sidebar() {
