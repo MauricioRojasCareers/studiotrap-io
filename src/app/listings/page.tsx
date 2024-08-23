@@ -67,7 +67,7 @@ export default function ListingsPage() {
               key={index}
               className="transform-gpu hover:scale-105 hover:rotate-0 transition-transform duration-300 hover:shadow-[0px_0px_20px_rgba(0,0,0,0.15)]"
               variants={{
-                hidden: { opacity: 0, y: 50 },
+                hidden: { opacity: 0, y: 49 },
                 visible: { opacity: 1, y: 0 },
               }}
               transition={{ duration: 0.6 }}
