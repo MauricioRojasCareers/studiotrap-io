@@ -4,7 +4,7 @@ import Test from "./components/Testing";
 
 export default async function Home() {
   return (
-    <main className="h-screen flex flex-col items-center justify-center bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff] gap-12 px-4 py-16">
+    <main className="h-screen flex flex-col items-center justify-center bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff] gap-12 px-4 py-16 overscroll-none">
       <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem] p-2 ">
         Studio <span className="text-[#33134A]">Trap</span>
       </h1>
