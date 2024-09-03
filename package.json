@@ -13,6 +13,7 @@
     "@auth/core": "^0.34.2",
     "@auth/prisma-adapter": "^2.4.2",
     "@prisma/client": "^5.18.0",
+    "@radix-ui/react-aspect-ratio": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@shadcn/ui": "^0.0.4",
     "@t3-oss/env-nextjs": "^0.10.1",

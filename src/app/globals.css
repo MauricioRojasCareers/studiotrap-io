@@ -1,4 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-  
+
+.home-page-body {
+  @apply m-0 p-0 h-full overflow-hidden text-red-700; /* Home page specific styles */
+}
+
+.other-page-body {
+  @apply overflow-auto text-blue-500; /* Other pages can scroll */
+}

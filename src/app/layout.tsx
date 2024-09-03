@@ -25,6 +25,7 @@ export default async function RootLayout({
           <Navbar />
           {children}
         </ClientWrapper>
+
         <link rel="icon" href="/studiotrap.ico" sizes="any" />
       </body>
     </html>
