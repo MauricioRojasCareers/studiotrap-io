@@ -110,7 +110,7 @@ export default function ListingsPage() {
 
   return (
     <section className="w-full bg-white p-4">
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 max-w-7xl mx-auto px-4">
+      <div className="p-2 flex md:flex-row md:flex-wrap flex-col gap-4 items-center justify-center ">
         {studios.map((studio) => (
           <StudioCard key={studio.id} {...studio} />
         ))}
