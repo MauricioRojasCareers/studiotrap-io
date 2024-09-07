@@ -1,8 +1,20 @@
+"use client";
+
 import Link from "next/link";
 import StudioCard from "~/app/components/StudioCard"; // Adjust the path if needed
 import Test from "./components/Testing";
+import { useEffect } from "react";
 
 export default async function Home() {
+  useEffect(() => {
+    const preventBounce = (event: TouchEvent) => event.preventDefault();
+
+    document.addEventListener("touchmove", preventBounce, { passive: false });
+
+    return () => {
+      document.removeEventListener("touchmove", preventBounce);
+    };
+  }, []);
   return (
     <main className="h-screen flex flex-col items-center justify-center bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff] gap-12 px-4 py-16 overscroll-none">
       <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem] p-2 ">
