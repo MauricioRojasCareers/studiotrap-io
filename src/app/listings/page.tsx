@@ -50,11 +50,67 @@ export default function ListingsPage() {
       details: "High-end equipment · Great location",
       price: "$80",
     },
+    {
+      id: 3,
+      image: "/homestudio.jpg",
+      title: "Luxury Music Studio",
+      rating: "5.0",
+      details: "High-end equipment · Great location",
+      price: "$80",
+    },
+    {
+      id: 3,
+      image: "/homestudio.jpg",
+      title: "Luxury Music Studio",
+      rating: "5.0",
+      details: "High-end equipment · Great location",
+      price: "$80",
+    },
+    {
+      id: 3,
+      image: "/homestudio.jpg",
+      title: "Luxury Music Studio",
+      rating: "5.0",
+      details: "High-end equipment · Great location",
+      price: "$80",
+    },
+    {
+      id: 3,
+      image: "/homestudio.jpg",
+      title: "Luxury Music Studio",
+      rating: "5.0",
+      details: "High-end equipment · Great location",
+      price: "$80",
+    },
+    {
+      id: 3,
+      image: "/homestudio.jpg",
+      title: "Luxury Music Studio",
+      rating: "5.0",
+      details: "High-end equipment · Great location",
+      price: "$80",
+    },
+    {
+      id: 3,
+      image: "/homestudio.jpg",
+      title: "Luxury Music Studio",
+      rating: "5.0",
+      details: "High-end equipment · Great location",
+      price: "$80",
+    },
+    {
+      id: 3,
+      image: "/homestudio.jpg",
+      title: "Luxury Music Studio",
+      rating: "5.0",
+      details: "High-end equipment · Great location",
+      price: "$80",
+    },
   ];
 
   return (
-    <section className="w-full bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff] p-4">
-      <div className="flex flex-col gap-4 items-center justify-center">
+    <section className="w-full bg-white p-4">
+      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 max-w-7xl mx-auto px-4">
         {studios.map((studio) => (
           <StudioCard key={studio.id} {...studio} />
         ))}
