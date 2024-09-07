@@ -74,14 +74,14 @@ export default function AdvancedSearchBar() {
         {/* Date Picker */}
         <div className="relative w-full md:w-auto" ref={calendarRef}>
           <div
-            className="flex items-center border-b md:border-b-0 md:border-r border-gray-200 px-4 py-2 cursor-pointer w-full md:w-auto"
+            className="flex items-center border-b md:border-b-0 md:border-r border-gray-200 px-4 py-2 cursor-pointer w-full md:w-auto gap-2"
             onClick={() => setShowDatePicker(!showDatePicker)}
           >
-            <FaCalendarAlt className="text-gray-500 mr-2 " />
-            <span className="text-gray-700 ">
-              {`${dateRange[0]?.startDate?.toDateString() ?? ""} - ${
-                dateRange[0]?.endDate?.toDateString() ?? ""
-              }`}
+            <FaCalendarAlt className="text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis mr-2" />
+            <span className="text-gray-700 whitespace-normal md:whitespace-nowrap overflow-hidden md:overflow-ellipsis">
+              {`${dateRange[0]?.startDate?.toDateString() ?? ""} -`}
+              <br className="md:hidden" />
+              {`${dateRange[0]?.endDate?.toDateString() ?? ""}`}
             </span>
           </div>
           {showDatePicker && (
@@ -136,9 +136,9 @@ export default function AdvancedSearchBar() {
         </div>
 
         {/* Search Button */}
-        <div className="flex justify-center items-center w-full md:w-auto mt-2 md:mt-0">
+        <div className="flex justify-center items-center w-full md:w-auto mt-2 md:mt-0 md:ml-4">
           <button className="bg-white/10 text-[#b354e7] px-6 py-2 rounded-full flex items-center w-full md:w-auto hover:bg-white/20 transition-transform duration-300 hover:scale-105 hover:shadow-[0px_0px_20px_rgba(0,0,0,0.15)]">
-            <FaSearch className="mr-2" />
+            <FaSearch className="" />
             Search
           </button>
         </div>
