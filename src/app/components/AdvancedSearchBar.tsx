@@ -72,13 +72,16 @@ export default function AdvancedSearchBar() {
         </div>
 
         {/* Date Picker */}
-        <div className="relative w-full md:w-auto" ref={calendarRef}>
+        <div
+          className="relative w-full md:w-auto justify-center "
+          ref={calendarRef}
+        >
           <div
-            className="flex items-center border-b md:border-b-0 md:border-r border-gray-200 px-4 py-2 cursor-pointer w-full md:w-auto gap-2"
+            className="flex items-center justify-center border-b md:border-b-0 md:border-r border-gray-200 px-4 py-2 cursor-pointer w-full md:w-auto gap-2"
             onClick={() => setShowDatePicker(!showDatePicker)}
           >
             <FaCalendarAlt className="text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis mr-2" />
-            <span className="text-gray-700 whitespace-normal md:whitespace-nowrap overflow-hidden md:overflow-ellipsis">
+            <span className="text-gray-700 whitespace-normal md:whitespace-nowrap overflow-hidden md:overflow-ellipsis ">
               {`${dateRange[0]?.startDate?.toDateString() ?? ""} -`}
               <br className="md:hidden" />
               {`${dateRange[0]?.endDate?.toDateString() ?? ""}`}
@@ -86,7 +89,7 @@ export default function AdvancedSearchBar() {
           </div>
           {showDatePicker && (
             <div
-              className="absolute top-full mt-2 z-50 bg-white shadow-lg rounded-lg"
+              className="absolute top-full w-full flex justify-center mt-2 z-50 shadow-lg rounded-lg bg-white/10 p-4 hover:bg-white/20"
               onClick={(e) => e.stopPropagation()}
             >
               <DateRange
