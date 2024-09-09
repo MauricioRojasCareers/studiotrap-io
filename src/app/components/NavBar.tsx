@@ -125,9 +125,11 @@ export default function Navbar() {
                   </Link>
                 )}
               </SheetClose>
-              <div className="flex justify-center text-xs">
-                Signed in as {session?.user.name}
-              </div>
+              {session ? (
+                <div className="flex justify-center text-xs">
+                  Signed in as {session?.user.name}
+                </div>
+              ) : null}
             </SheetFooter>
           </SheetContent>
         </Sheet>
