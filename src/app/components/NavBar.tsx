@@ -7,6 +7,16 @@ import Link from "next/link";
 import AdvancedSearchBar from "../components/AdvancedSearchBar";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Image from "next/image";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "./ui/sheet";
 
 export default function Navbar() {
   const { data: session } = useSession();
@@ -28,19 +38,6 @@ export default function Navbar() {
         <Link href="/" className="text-2xl font-bold text-gray-900">
           Studio<span className="text-[#33134A]">Trap</span>
         </Link>
-        {/* Hamburger Menu Icon for Mobile */}
-        <div className="flex md:hidden items-center">
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-gray-700 focus:outline-none"
-          >
-            {isMenuOpen ? (
-              <FaTimes className="text-2xl" />
-            ) : (
-              <FaBars className="text-2xl" />
-            )}
-          </button>
-        </div>
         {/* Advanced Search Bar */}
         <div className="hidden md:flex flex-grow mx-4 lg:mx-8">
           <AdvancedSearchBar />
@@ -88,15 +85,57 @@ export default function Navbar() {
           )}
         </div>
         {/* Mobile Menu (Visible only when the hamburger menu is open) */}
+        {/* Hamburger Menu Icon for Mobile */}
+        {/* <div className="flex md:hidden items-center">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="text-gray-700 focus:outline-none"
+          >
+            {isMenuOpen ? (
+              <FaTimes className="text-2xl" />
+            ) : (
+              <FaBars className="text-2xl" />
+            )}
+          </button>
+        </div> */}
 
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="ghost" className="md:hidden lg:hidden">
+              <FaBars className="text-2xl" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right">
+            <SheetHeader>
+              <SheetTitle>StudioTrap</SheetTitle>
+              <hr />
+
+              <SheetDescription>
+                {/* Make changes to your profile here. Click save when you're done. */}
+              </SheetDescription>
+            </SheetHeader>
+
+            <SheetFooter>
+              <SheetClose asChild>
+                {session ? null : (
+                  <Link href="/api/auth/signin">
+                    <Button type="submit" className="w-full">
+                      Log In
+                    </Button>
+                  </Link>
+                )}
+              </SheetClose>
+              <div className="flex justify-center text-xs">
+                Signed in as {session?.user.name}
+              </div>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
+
+        {/* 
         {isMenuOpen && (
           <div className="absolute top-full left-0 w-full bg-white shadow-lg md:hidden">
             <div className="flex flex-col p-4 space-y-4">
-              {/* Show the Search Bar on Mobile */}
-              {/* <div className="flex mb-4">
-                <AdvancedSearchBar />
-              </div> */}
-
               <>
                 <Link
                   href="/dashboard"
@@ -122,9 +161,9 @@ export default function Navbar() {
                       />
                       <div> {session.user.name}</div>
                     </div>
-                  ) : null}
-                  {/* Profile Icon */}
-                </Link>
+                  ) : null} */}
+        {/* Profile Icon */}
+        {/* </Link>
               </>
 
               <Button
@@ -135,7 +174,7 @@ export default function Navbar() {
               </Button>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </nav>
   );
