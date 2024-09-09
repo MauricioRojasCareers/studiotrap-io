@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 
-import { AspectRatio } from "~/components/ui/aspect-ratio";
+import { AspectRatio } from "~/app/components/ui/aspect-ratio";
 
 interface StudioCardProps {
   image: string;
