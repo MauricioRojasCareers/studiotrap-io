@@ -57,17 +57,17 @@ export default function AdvancedSearchBar() {
   }, [guestDropdownRef, calendarRef]);
 
   return (
-    <div className="w-full max-w-4xl mx-auto py-4">
+    <div className=" max-w-4xl mx-auto py-4 ">
       <div className="flex flex-col md:flex-row items-center border border-gray-300 md:rounded-full shadow-md p-2 bg-white">
         {/* Location Input */}
-        <div className="flex items-center border-b md:border-b-0 md:border-r w-full px-4 py-2 md:w-auto border-gray-200  ">
+        <div className="flex items-center border-b md:border-b-0 md:border-r w-full px-4 py-2 md:w-auto border-gray-200 ">
           <FaMapMarkerAlt className="text-gray-500 mr-2" />
           <input
             type="text"
             placeholder="Where are you going?"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            className="focus:outline-none w-full"
+            className="focus:outline-none   whitespace-normal md:whitespace-nowrap overflow-hidden md:overflow-ellipsis text-xs"
           />
         </div>
 
@@ -81,7 +81,7 @@ export default function AdvancedSearchBar() {
             onClick={() => setShowDatePicker(!showDatePicker)}
           >
             <FaCalendarAlt className="text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis mr-2" />
-            <span className="text-gray-700 whitespace-normal md:whitespace-nowrap overflow-hidden md:overflow-ellipsis ">
+            <span className="text-gray-700 whitespace-normal md:whitespace-nowrap overflow-hidden md:overflow-ellipsis text-xs ">
               {`${dateRange[0]?.startDate?.toDateString() ?? ""} -`}
               <br className="md:hidden" />
               {`${dateRange[0]?.endDate?.toDateString() ?? ""}`}
@@ -104,13 +104,13 @@ export default function AdvancedSearchBar() {
         </div>
 
         {/* Guests Dropdown */}
-        <div className="relative w-full md:w-auto" ref={guestDropdownRef}>
+        <div className="relative w-full md:w-auto " ref={guestDropdownRef}>
           <div
-            className="flex items-center border-b md:border-b-0 md:border-r border-gray-200 px-4 py-2 cursor-pointer w-full md:w-auto"
+            className="flex items-center border-b md:border-b-0 md:border-r border-gray-200 px-4 py-2 cursor-pointer w-full md:w-auto md:whitespace-nowrap overflow-hidden md:overflow-ellipsis"
             onClick={() => setShowGuestDropdown(!showGuestDropdown)}
           >
             <FaUser className="text-gray-500 mr-2" />
-            <span className="text-gray-700 text-center">
+            <span className="text-gray-700 text-center text-xs">
               {guests} Guest{guests > 1 && "s"}
             </span>
           </div>
@@ -139,10 +139,9 @@ export default function AdvancedSearchBar() {
         </div>
 
         {/* Search Button */}
-        <div className="flex justify-center items-center w-full md:w-auto mt-2 md:mt-0 md:ml-4">
-          <button className="bg-white/10 text-[#b354e7] px-6 py-2 rounded-full flex items-center w-full md:w-auto hover:bg-white/20 transition-transform duration-300 hover:scale-105 hover:shadow-[0px_0px_20px_rgba(0,0,0,0.15)]">
-            <FaSearch className="" />
-            Search
+        <div className="flex justify-center items-center w-full md:w-auto mt-2 md:mt-0  md:mx-auto p-2">
+          <button className="bg-white/10 text-[#b354e7] px-4 py-2 rounded-full flex items-center  hover:bg-white/20 transition-transform duration-300 hover:scale-105 hover:shadow-[0px_0px_20px_rgba(0,0,0,0.15)] gap-2 ">
+            <FaSearch /> Search
           </button>
         </div>
       </div>
