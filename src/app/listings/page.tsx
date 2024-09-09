@@ -109,13 +109,19 @@ export default function ListingsPage() {
   ];
 
   return (
-    <section className="w-full bg-white p-4">
-      <div className="p-2 flex md:flex-row md:flex-wrap flex-col gap-4 items-center justify-center ">
-        {studios.map((studio) => (
-          <StudioCard key={studio.id} {...studio} />
-        ))}
-      </div>
-    </section>
+    <div>
+      <p>This is listings page</p>
+    </div>
+
+    // FLEX ROW AND COL APPROACH BUT NOT JUSTIFYING LEFT
+    // <section className="w-full bg-white p-4">
+    //   <div className="p-2 flex md:flex-row md:flex-wrap flex-col gap-4 items-center justify-center ">
+    //     {studios.map((studio) => (
+    //       <StudioCard key={studio.id} {...studio} />
+    //     ))}
+    //   </div>
+    // </section>
+    // GRID APPROACH
     // <main className="flex min-h-screen flex-col items-center justify-start bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff] text-white pt-8">
     //   <div className="container mx-auto px-4">
     //     <h1 className="text-4xl font-bold mb-8">Available Studios</h1>
