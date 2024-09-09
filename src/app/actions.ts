@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { prisma } from "~/server/auth";
+import { hash } from "bcrypt"
 
 type SignUpActionType = {
   name: string;
@@ -17,9 +18,9 @@ export async function signUpAction(
   // Hashing for password
   // email, name, and password verification
 
-  const name = formData.get("name")?.toString();
-  const email = formData.get("email")?.toString();
-  const password = formData.get("password")?.toString();
+  const name = formData.get("name")?.toString().trim();
+  const email = formData.get("email")?.toString().trim();
+  const password = formData.get("password")?.toString().trim();
 
   if (!name || !email || !password)
     return {
@@ -28,12 +29,14 @@ export async function signUpAction(
       status: true,
     };
 
+  const hashedPassword = await hash(password, 10)
+
   try {
-    let response = await prisma.user.create({
+    await prisma.user.create({
       data: {
         name,
         email,
-        password,
+        password: hashedPassword,
       },
     });
   } catch {

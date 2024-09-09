@@ -11,6 +11,7 @@ import { Adapter } from "next-auth/adapters";
 import GoogleProvider from "next-auth/providers/google";
 
 import { env } from "~/env";
+import { compare } from "bcrypt";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -71,9 +72,10 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        if (!user) return null;
+        if (!user || !user.password) return null;
 
-        if (!user.password || password !== user.password) return null;
+        const isSamePassword = await compare(password, user.password);
+        if (!isSamePassword) return null;
 
         return user;
       },
