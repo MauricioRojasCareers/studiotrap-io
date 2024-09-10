@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Button } from "../components/ui/button";
 import Link from "next/link";
 import AdvancedSearchBar from "../components/AdvancedSearchBar";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import Image from "next/image";
 import {
   Sheet,
@@ -32,7 +32,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="border-b border-gray-200 py-3 bg-white shadow-sm  top-0 z-50 w-full rounded ">
+    <nav className="border-b border-gray-200 py-3 bg-white shadow-sm top-0 z-50 w-full rounded">
       <div className="container mx-auto flex items-center justify-between px-4 lg:px-8">
         {/* Logo or Brand Name */}
         <Link href="/" className="text-2xl font-bold text-gray-900">
@@ -44,15 +44,6 @@ export default function Navbar() {
         </div>
         {/* Navigation Links (Hidden on mobile, shown on larger screens) */}
         <div className="hidden md:flex space-x-8 items-center">
-          {/* {session ? (
-            <Link
-              href="/dashboard"
-              className="text-gray-700 hover:text-gray-900 font-medium"
-            >
-              Dashboard
-            </Link>
-          ) : null} */}
-
           <Link
             href={session ? "/" : "/api/auth/signin"}
             className="text-gray-700 hover:text-gray-900 font-medium flex items-center text-center"
@@ -76,6 +67,7 @@ export default function Navbar() {
               <Button variant={"ghost"}>Log In</Button>
             )}
           </Link>
+          {/* Display "Sign Up" button if not logged in */}
           {session ? (
             ""
           ) : (
@@ -84,21 +76,8 @@ export default function Navbar() {
             </Link>
           )}
         </div>
-        {/* Mobile Menu (Visible only when the hamburger menu is open) */}
-        {/* Hamburger Menu Icon for Mobile */}
-        {/* <div className="flex md:hidden items-center">
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-gray-700 focus:outline-none"
-          >
-            {isMenuOpen ? (
-              <FaTimes className="text-2xl" />
-            ) : (
-              <FaBars className="text-2xl" />
-            )}
-          </button>
-        </div> */}
 
+        {/* Mobile Menu (Sheet for mobile navigation) */}
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="ghost" className="md:hidden lg:hidden">
@@ -111,72 +90,47 @@ export default function Navbar() {
               <hr />
 
               <SheetDescription>
-                {/* Make changes to your profile here. Click save when you're done. */}
+                {/* Profile and navigation options */}
               </SheetDescription>
             </SheetHeader>
 
             <SheetFooter>
               <SheetClose asChild>
-                {session ? null : (
-                  <Link href="/api/auth/signin">
-                    <Button type="submit" className="w-full">
-                      Log In
+                {session ? (
+                  <div className="w-full flex flex-col items-center">
+                    <Button
+                      variant="destructive"
+                      onClick={handleSign}
+                      className="w-full text-white bg-red-500 hover:bg-red-600"
+                    >
+                      Sign Out
                     </Button>
-                  </Link>
+                    <div className="mt-2 text-xs text-gray-600">
+                      Signed in as {session?.user.name}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="w-full flex flex-col space-y-4">
+                    <Link href="/api/auth/signin">
+                      <Button type="submit" className="w-full">
+                        Log In
+                      </Button>
+                    </Link>
+                    {/* Add "Sign Up" button in mobile view when user is not logged in */}
+                    <Link href="/signup">
+                      <Button
+                        variant="default"
+                        className="w-full text-white bg-purple-200 hover:bg-purple-300"
+                      >
+                        Sign Up
+                      </Button>
+                    </Link>
+                  </div>
                 )}
               </SheetClose>
-              {session ? (
-                <div className="flex justify-center text-xs">
-                  Signed in as {session?.user.name}
-                </div>
-              ) : null}
             </SheetFooter>
           </SheetContent>
         </Sheet>
-
-        {/* 
-        {isMenuOpen && (
-          <div className="absolute top-full left-0 w-full bg-white shadow-lg md:hidden">
-            <div className="flex flex-col p-4 space-y-4">
-              <>
-                <Link
-                  href="/dashboard"
-                  className="text-gray-700 hover:text-gray-900 font-medium"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Dashboard
-                </Link>
-                <hr />
-                <Link
-                  href="/profile"
-                  className="text-gray-700 hover:text-gray-900 font-medium flex items-center"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {session ? (
-                    <div className="flex gap-4 items-center mx-auto mt-10">
-                      <Image
-                        src={session.user.image as string}
-                        alt="User Profile"
-                        width={30}
-                        height={30}
-                        className="rounded-full"
-                      />
-                      <div> {session.user.name}</div>
-                    </div>
-                  ) : null} */}
-        {/* Profile Icon */}
-        {/* </Link>
-              </>
-
-              <Button
-                variant={session ? "destructive" : "default"}
-                onClick={handleSign}
-              >
-                {session ? "Sign Out" : "Sign In"}
-              </Button>
-            </div>
-          </div>
-        )} */}
       </div>
     </nav>
   );
