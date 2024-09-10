@@ -52,6 +52,7 @@ model User {
   password      String?
   accounts      Account[]
   sessions      Session[]
+  listings      Listing[]
  
   @@map("users")
 }
@@ -65,3 +66,18 @@ model VerificationToken {
   @@map("verificationtokens")
 }
 
+model Listing {
+  id           String          @id @default(cuid()) 
+  userId       String          @map("user_id")
+  user         User            @relation(fields: [userId], references: [id])
+  images       ListingImage[]
+  createdAt    DateTime        @map("created_at") @default(now())
+  title        String    
+  description  String
+}
+
+model ListingImage {
+  id        String    @id @default(cuid())
+  listingId String    
+  listing   Listing   @relation(fields: [listingId], references: [id])
+}
