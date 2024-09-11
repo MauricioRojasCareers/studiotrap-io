@@ -25,18 +25,18 @@ const formSchema = z.object({
 
 import { SubmitHandler } from "react-hook-form";
 
-type Inputs = {
-  example: string;
-  exampleRequired: string;
-};
+interface ListingFormData {
+  address: string;
+  pricePerHour: number;
+}
 
 export default function ProfileForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  } = useForm<ListingFormData>();
+  const onSubmit: SubmitHandler<ListingFormData> = (data) => console.log(data);
 
   const form = useForm();
 
@@ -67,7 +67,7 @@ export default function ProfileForm() {
           transition={{ duration: 0.5 }} // Transition duration
         >
           {/* Username Field */}
-          <FormField
+          {/* <FormField
             control={form.control}
             name="username"
             render={({ field }) => (
@@ -87,7 +87,7 @@ export default function ProfileForm() {
                 <FormMessage />
               </FormItem>
             )}
-          />
+          /> */}
 
           {/* Address Field */}
           <FormField
@@ -135,7 +135,7 @@ export default function ProfileForm() {
           />
 
           {/* Image Upload Field */}
-          <FormField
+          {/* <FormField
             control={form.control}
             name="image"
             render={({ field }) => (
@@ -159,7 +159,7 @@ export default function ProfileForm() {
                 <FormMessage />
               </FormItem>
             )}
-          />
+          /> */}
 
           {/* Submit Button with Framer Animation */}
           <motion.div

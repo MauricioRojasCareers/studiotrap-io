@@ -97,11 +97,14 @@ export default function Navbar() {
             <SheetFooter>
               <SheetClose asChild>
                 {session ? (
-                  <div className="w-full flex flex-col items-center">
+                  <div className="w-full flex flex-col items-center bg-yellow-700 h-screen">
+                    <Link href="/create-listings">
+                      <Button variant="link">Create a listing</Button>
+                    </Link>
                     <Button
-                      variant="destructive"
+                      variant="default"
                       onClick={handleSign}
-                      className="w-full text-white bg-red-500 hover:bg-red-600"
+                      className=" absolute bottom-0 m-4 bg-red-700"
                     >
                       Sign Out
                     </Button>
