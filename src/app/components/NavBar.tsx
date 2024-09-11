@@ -129,21 +129,34 @@ export default function Navbar() {
                     </Button>
                   </SheetDescription>
 
-                  <SheetTitle className="mx-auto p-8">
+                  <SheetTitle className="mx-auto p-8 ">
                     {" "}
-                    <a href="/">
+                    {session?.user?.image && (
+                      <div className="flex justify-center">
+                        <Image
+                          src={session.user.image}
+                          alt="Users Image"
+                          width={60}
+                          height={60}
+                          className="rounded-full"
+                        />
+                      </div>
+                    )}{" "}
+                    <a href="/" className="">
                       <Button variant="ghost" className="rounded-full">
                         StudioTrap{" "}
                       </Button>
                     </a>{" "}
-                    <div className="absolute top-0 left-0  mx-auto">
-                      <Button
-                        onClick={handleSign}
-                        variant="ghost"
-                        className="mt-2 ml-2"
-                      >
-                        {session ? "Sign Out" : "Sign In"}
-                      </Button>
+                    <div className="absolute top-0 left-0 mx-auto">
+                      <div className="flex flex-row">
+                        <Button
+                          onClick={handleSign}
+                          variant="ghost"
+                          className="mt-2 ml-2"
+                        >
+                          {session ? "Sign Out" : "Sign In"}
+                        </Button>
+                      </div>
                     </div>
                   </SheetTitle>
 
@@ -156,9 +169,7 @@ export default function Navbar() {
                         </span>
                       </a>
                     </div>
-                  ) : (
-                    <Link href="/api/auth/signin"></Link>
-                  )}
+                  ) : null}
                 </>
               </SheetClose>
             </SheetFooter>
