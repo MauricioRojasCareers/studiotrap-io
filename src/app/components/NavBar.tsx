@@ -75,9 +75,7 @@ export default function Navbar() {
             ""
           ) : (
             <Link href={"/signup"}>
-              <Button variant={"ghost"} onClick={handleSign}>
-                Sign Up
-              </Button>
+              <Button variant={"ghost"}>Sign Up</Button>
             </Link>
           )}
         </div>
