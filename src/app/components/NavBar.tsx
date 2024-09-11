@@ -89,8 +89,6 @@ export default function Navbar() {
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="container">
-            <SheetHeader className="text-xs mt-6">StudioTrap</SheetHeader>
-
             <SheetFooter>
               <SheetClose asChild>
                 <>
@@ -175,6 +173,18 @@ export default function Navbar() {
                       </div>
                     </div>
                   </SheetTitle>
+                  <SheetHeader className="text-xs mt-6 flex items-center gap-4">
+                    <a href="/">
+                      <Button variant="ghost">StudioTrap</Button>
+                    </a>
+                    <Image
+                      src="/studiotrap.png"
+                      alt="studiotrap logo"
+                      width={120}
+                      height={120}
+                      className="border-full"
+                    ></Image>
+                  </SheetHeader>
 
                   {!session ? (
                     <div className=" mt-2 text-xs text-gray-600 flex mx-auto p-4 absolute inset-x-0 bottom-0 text-center justify-center">
