@@ -89,7 +89,7 @@ export default function Navbar() {
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="container">
-            <SheetHeader></SheetHeader>
+            <SheetHeader className="text-xs mt-6">StudioTrap</SheetHeader>
 
             <SheetFooter>
               <SheetClose asChild>
@@ -118,15 +118,33 @@ export default function Navbar() {
                       </Button>
                     ) : null}
 
-                    <Button type="submit" variant="link" className="w-full">
-                      <a
-                        href="/create-listings"
-                        className=" flex justify-start w-full"
+                    {session ? (
+                      <Button type="submit" variant="link" className="w-full">
+                        <a
+                          href="/create-listings"
+                          className=" flex justify-start w-full"
+                        >
+                          {" "}
+                          Create Listing{" "}
+                        </a>
+                      </Button>
+                    ) : (
+                      <Button
+                        type="submit"
+                        variant="default"
+                        className="w-full "
                       >
-                        {" "}
-                        Create Listing{" "}
-                      </a>
-                    </Button>
+                        <div className="">
+                          <a
+                            href="/create-listings"
+                            className=" flex justify-center w-full"
+                          >
+                            {" "}
+                            Create Listing{" "}
+                          </a>
+                        </div>
+                      </Button>
+                    )}
                   </SheetDescription>
 
                   <SheetTitle className="mx-auto p-8 ">
@@ -143,9 +161,7 @@ export default function Navbar() {
                       </div>
                     )}{" "}
                     <a href="/" className="">
-                      <Button variant="ghost" className="rounded-full">
-                        StudioTrap{" "}
-                      </Button>
+                      {!session ? null : session?.user.name}
                     </a>{" "}
                     <div className="absolute top-0 left-0 mx-auto">
                       <div className="flex flex-row">
@@ -160,7 +176,11 @@ export default function Navbar() {
                     </div>
                   </SheetTitle>
 
-                  {session ? (
+                  {!session ? (
+                    <div className=" mt-2 text-xs text-gray-600 flex mx-auto p-4 absolute inset-x-0 bottom-0 text-center justify-center">
+                      StudioTrap LLC.
+                    </div>
+                  ) : (
                     <div className=" mt-2 text-xs text-gray-600 flex mx-auto p-4 absolute inset-x-0 bottom-0 text-center justify-center">
                       Signed in as &nbsp;
                       <a href="/profile">
@@ -169,7 +189,7 @@ export default function Navbar() {
                         </span>
                       </a>
                     </div>
-                  ) : null}
+                  )}
                 </>
               </SheetClose>
             </SheetFooter>
