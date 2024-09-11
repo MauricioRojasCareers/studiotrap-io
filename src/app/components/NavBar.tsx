@@ -174,16 +174,20 @@ export default function Navbar() {
                     </div>
                   </SheetTitle>
                   <SheetHeader className="text-xs mt-6 flex items-center gap-4">
-                    <a href="/">
-                      <Button variant="ghost">StudioTrap</Button>
-                    </a>
-                    <Image
-                      src="/studiotrap.png"
-                      alt="studiotrap logo"
-                      width={120}
-                      height={120}
-                      className="border-full"
-                    ></Image>
+                    {session ? null : (
+                      <>
+                        <a href="/">
+                          <Button variant="ghost">StudioTrap</Button>
+                        </a>
+                        <Image
+                          src="/studiotrap.png"
+                          alt="studiotrap logo"
+                          width={120}
+                          height={120}
+                          className="border-full"
+                        ></Image>
+                      </>
+                    )}
                   </SheetHeader>
 
                   {!session ? (
