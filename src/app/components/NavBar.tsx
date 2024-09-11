@@ -22,6 +22,8 @@ export default function Navbar() {
   const { data: session } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const ListingsPressed = () => {};
+
   const handleSign = () => {
     setIsMenuOpen(false);
     if (session) {
@@ -84,10 +86,9 @@ export default function Navbar() {
               <FaBars className="text-2xl" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right">
+          <SheetContent side="right" className="container">
             <SheetHeader>
               <SheetTitle>StudioTrap</SheetTitle>
-              <hr />
 
               <SheetDescription>
                 {/* Profile and navigation options */}
@@ -95,41 +96,30 @@ export default function Navbar() {
             </SheetHeader>
 
             <SheetFooter>
+              {session ? (
+                <div className="mt-2 text-xs text-gray-600 flex mx-auto absolute bottom-0 p-4">
+                  Signed in as {session?.user.name}
+                </div>
+              ) : null}
+
               <SheetClose asChild>
-                {session ? (
-                  <div className="w-full flex flex-col items-center bg-yellow-700 h-screen">
-                    <Link href="/create-listings">
-                      <Button variant="link">Create a listing</Button>
-                    </Link>
-                    <Button
-                      variant="default"
-                      onClick={handleSign}
-                      className=" absolute bottom-0 m-4 bg-red-700"
-                    >
-                      Sign Out
+                <>
+                  <a href="/create-listings" className=" flex justify-start">
+                    <Button type="submit" variant="link">
+                      Create Listing
                     </Button>
-                    <div className="mt-2 text-xs text-gray-600">
-                      Signed in as {session?.user.name}
-                    </div>
-                  </div>
-                ) : (
-                  <div className="w-full flex flex-col space-y-4">
-                    <Link href="/api/auth/signin">
-                      <Button type="submit" className="w-full">
-                        Log In
-                      </Button>
-                    </Link>
-                    {/* Add "Sign Up" button in mobile view when user is not logged in */}
-                    <Link href="/signup">
-                      <Button
-                        variant="default"
-                        className="w-full text-white bg-purple-200 hover:bg-purple-300"
-                      >
-                        Sign Up
-                      </Button>
-                    </Link>
-                  </div>
-                )}
+                  </a>
+                  <a href="/dashboard" className=" flex justify-start">
+                    <Button type="submit" variant="link">
+                      Dashboard
+                    </Button>
+                  </a>
+                  <a href="/profile" className=" flex justify-start">
+                    <Button type="submit" variant="link">
+                      Profile
+                    </Button>
+                  </a>
+                </>
               </SheetClose>
             </SheetFooter>
           </SheetContent>
@@ -138,3 +128,41 @@ export default function Navbar() {
     </nav>
   );
 }
+
+// Sheet closed stash  {session ? (
+//     <div className="w-full flex flex-col items-center h-screen">
+//     <Link href="/create-listings">
+//       <Button onClick={ListingsPressed} variant="link">
+//         Create a listing
+//       </Button>
+//     </Link>
+//     <Button
+//       variant="default"
+//       onClick={handleSign}
+//       className=" absolute bottom-0 m-4 "
+//     >
+//       Sign Out
+//     </Button>
+//   </div>
+// ) : (
+//   <div className="w-full flex flex-col space-y-4">
+//     <Link href="/api/auth/signin">
+//       <Button type="submit" className="w-full">
+//         Log In
+//       </Button>
+//     </Link>
+{
+  /* Add "Sign Up" button in mobile view when user is not logged in */
+}
+{
+  /* <Link href="/signup">
+                    <Button
+                      variant="default"
+                      className="w-full text-white bg-purple-200 hover:bg-purple-300"
+                    >
+                      Sign Up
+                    </Button>
+                  </Link>
+                </div> */
+}
+// )}
