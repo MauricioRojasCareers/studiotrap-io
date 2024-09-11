@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Button } from "../components/ui/button";
 import Link from "next/link";
 import AdvancedSearchBar from "../components/AdvancedSearchBar";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaCog } from "react-icons/fa";
 import Image from "next/image";
 import {
   Sheet,
@@ -99,13 +99,13 @@ export default function Navbar() {
                       href="/profile"
                       className="outline-none focus:outline-none flex justify-start"
                     >
-                      <Button type="submit" variant="link">
+                      <Button type="submit" variant="ghost">
                         Profile
                       </Button>
                     </a>
 
                     <a href="/dashboard" className=" flex justify-start">
-                      <Button type="submit" variant="link">
+                      <Button type="submit" variant="ghost">
                         Dashboard
                       </Button>
                     </a>
