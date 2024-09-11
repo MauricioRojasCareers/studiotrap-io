@@ -1,7 +1,7 @@
 // app/api/create-listing/route.ts
 
-import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { NextResponse } from "next/server";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -15,7 +15,7 @@ export async function POST(req: Request) {
     // Insert data into the Prisma-managed database
     const listing = await prisma.listing.create({
       data: {
-        address: address || '',
+        address: address || "",
         pricePerHour: parseFloat(pricePerHour), // Convert to float if necessary
       },
     });
@@ -25,7 +25,10 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ success: true, listing });
   } catch (error) {
-    console.error('Error creating listing:', error);
-    return NextResponse.json({ success: false, error: 'Failed to create listing' }, { status: 500 });
+    console.error("Error creating listing:", error);
+    return NextResponse.json(
+      { success: false, error: "Failed to create listing" },
+      { status: 500 }
+    );
   }
 }
