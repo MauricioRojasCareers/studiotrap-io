@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"; // Import Framer Motion
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "~/app/components/ui/button";
@@ -17,18 +17,19 @@ import {
 } from "~/app/components/ui/form";
 import { Input } from "~/app/components/ui/input";
 
+// Define validation schema using Zod
 const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
+  address: z
+    .string()
+    .min(2, { message: "Address must be at least 2 characters." }),
+  pricePerHour: z
+    .number()
+    .positive({ message: "Price per hour must be a positive number." }),
 });
-
-import { SubmitHandler } from "react-hook-form";
 
 interface CreateListingData {
   address: string;
   pricePerHour: number;
-  imageUrl: string;
 }
 
 export default function CreateListingForm() {
@@ -36,15 +37,43 @@ export default function CreateListingForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<CreateListingData>();
-  const onSubmit: SubmitHandler<CreateListingData> = (data) =>
-    console.log(data);
+  } = useForm<CreateListingData>({
+    resolver: zodResolver(formSchema),
+  });
+
+  // Create a handler for submitted forms (POST call)
+  const onSubmit: SubmitHandler<CreateListingData> = async (data) => {
+    try {
+      // Send a POST request to the backend
+      const response = await fetch("/api/create-listings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data), // Send form data as JSON
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        // Handle success
+        alert("Listing created successfully!");
+        console.log(result);
+      } else {
+        // Handle failure
+        alert(`Error: ${result.error || "Failed to create listing"}`);
+        console.error(result);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An unexpected error occurred.");
+    }
+  };
 
   const form = useForm();
 
   return (
     <motion.div
-      className="h-screen w-full  p-4 flex flex-col items-center bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff]" // Background gradient
+      className="h-screen w-full p-4 flex flex-col items-center bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff]" // Background gradient
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
@@ -53,7 +82,7 @@ export default function CreateListingForm() {
       <Form {...form}>
         <motion.form
           className="space-y-6 p-8 bg-white rounded-xl shadow-xl max-w-md w-full mt-20 md:w-80"
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onSubmit)} // Form submission handled here
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
@@ -63,7 +92,8 @@ export default function CreateListingForm() {
           </h1>
 
           {/* Username Field */}
-          {/* <FormField
+          {/* 
+          <FormField
             control={form.control}
             name="username"
             render={({ field }) => (
@@ -80,7 +110,8 @@ export default function CreateListingForm() {
                 <FormMessage />
               </FormItem>
             )}
-          /> */}
+          />
+          */}
 
           {/* Address Field */}
           <FormField
@@ -97,7 +128,9 @@ export default function CreateListingForm() {
                     {...register("address")}
                   />
                 </FormControl>
-                <FormMessage />
+                {errors.address && (
+                  <FormMessage>{errors.address.message}</FormMessage>
+                )}
               </FormItem>
             )}
           />
@@ -115,16 +148,19 @@ export default function CreateListingForm() {
                     placeholder="Enter price per hour"
                     className="p-3 rounded-lg bg-gray-50 text-black shadow-sm"
                     {...field}
-                    {...register("pricePerHour")}
+                    {...register("pricePerHour", { valueAsNumber: true })}
                   />
                 </FormControl>
-                <FormMessage />
+                {errors.pricePerHour && (
+                  <FormMessage>{errors.pricePerHour.message}</FormMessage>
+                )}
               </FormItem>
             )}
           />
 
           {/* Image Upload Field */}
-          {/* <FormField
+          {/* 
+          <FormField
             control={form.control}
             name="image"
             render={({ field }) => (
@@ -146,7 +182,8 @@ export default function CreateListingForm() {
                 <FormMessage />
               </FormItem>
             )}
-          /> */}
+          />
+          */}
 
           {/* Submit and Cancel Buttons */}
           <div className="flex justify-between">
