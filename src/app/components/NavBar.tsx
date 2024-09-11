@@ -95,19 +95,20 @@ export default function Navbar() {
               <SheetClose asChild>
                 <>
                   <SheetDescription>
-                    <a href="/create-listings" className=" flex justify-start">
+                    <a href="/profile" className=" flex justify-start">
                       <Button type="submit" variant="link">
-                        Create Listing
+                        Profile
                       </Button>
                     </a>
+
                     <a href="/dashboard" className=" flex justify-start">
                       <Button type="submit" variant="link">
                         Dashboard
                       </Button>
                     </a>
-                    <a href="/profile" className=" flex justify-start">
+                    <a href="/create-listings" className=" flex justify-start">
                       <Button type="submit" variant="link">
-                        Profile
+                        Create Listing
                       </Button>
                     </a>
                   </SheetDescription>
