@@ -97,7 +97,7 @@ export default function Navbar() {
                   <SheetDescription>
                     <a
                       href="/profile"
-                      className="outline-none flex justify-start"
+                      className="outline-none focus:outline-none flex justify-start"
                     >
                       <Button type="submit" variant="link">
                         Profile
