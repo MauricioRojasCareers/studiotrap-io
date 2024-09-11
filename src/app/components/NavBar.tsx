@@ -96,28 +96,37 @@ export default function Navbar() {
                 <>
                   <SheetDescription>
                     {session ? (
-                      <a
-                        href="/profile"
-                        className="outline-none focus:outline-none flex justify-start"
-                      >
-                        <Button type="submit" variant="ghost">
-                          Profile
-                        </Button>
-                      </a>
+                      <Button type="submit" variant="ghost" className="w-full">
+                        <a
+                          href="/profile"
+                          className="outline-none focus:outline-none flex justify-start w-full"
+                        >
+                          {" "}
+                          Profile{" "}
+                        </a>
+                      </Button>
                     ) : null}
                     {session ? (
-                      <a href="/dashboard" className=" flex justify-start">
-                        <Button type="submit" variant="ghost">
+                      <Button type="submit" variant="ghost" className="w-full">
+                        <a
+                          href="/dashboard"
+                          className="flex justify-start w-full"
+                        >
+                          {" "}
                           Dashboard
-                        </Button>
-                      </a>
+                        </a>
+                      </Button>
                     ) : null}
 
-                    <a href="/create-listings" className=" flex justify-start">
-                      <Button type="submit" variant="link">
-                        Create Listing
-                      </Button>
-                    </a>
+                    <Button type="submit" variant="link" className="w-full">
+                      <a
+                        href="/create-listings"
+                        className=" flex justify-start w-full"
+                      >
+                        {" "}
+                        Create Listing{" "}
+                      </a>
+                    </Button>
                   </SheetDescription>
 
                   <SheetTitle className="mx-auto p-8">
