@@ -123,26 +123,22 @@ export default function Navbar() {
                           href="/create-listings"
                           className=" flex justify-start w-full"
                         >
-                          {" "}
-                          Create Listing{" "}
+                          Create Listing
                         </a>
                       </Button>
                     ) : (
-                      <Button
-                        type="submit"
-                        variant="default"
-                        className="w-full "
+                      <a
+                        href="/create-listings"
+                        className=" flex justify-center w-full "
                       >
-                        <div className="">
-                          <a
-                            href="/create-listings"
-                            className=" flex justify-center w-full"
-                          >
-                            {" "}
-                            Create Listing{" "}
-                          </a>
-                        </div>
-                      </Button>
+                        <Button
+                          type="submit"
+                          variant="default"
+                          className="w-full "
+                        >
+                          <div className=""> Create Listing </div>
+                        </Button>
+                      </a>
                     )}
                   </SheetDescription>
 
