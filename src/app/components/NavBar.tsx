@@ -95,7 +95,10 @@ export default function Navbar() {
               <SheetClose asChild>
                 <>
                   <SheetDescription>
-                    <a href="/profile" className=" flex justify-start">
+                    <a
+                      href="/profile"
+                      className="outline-none flex justify-start"
+                    >
                       <Button type="submit" variant="link">
                         Profile
                       </Button>
