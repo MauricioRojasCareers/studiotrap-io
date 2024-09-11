@@ -88,20 +88,12 @@ export default function Navbar() {
           </SheetTrigger>
           <SheetContent side="right" className="container">
             <SheetHeader>
-              <SheetTitle>StudioTrap</SheetTitle>
-
               <SheetDescription>
                 {/* Profile and navigation options */}
               </SheetDescription>
             </SheetHeader>
 
             <SheetFooter>
-              {session ? (
-                <div className="mt-2 text-xs text-gray-600 flex mx-auto absolute bottom-0 p-4">
-                  Signed in as {session?.user.name}
-                </div>
-              ) : null}
-
               <SheetClose asChild>
                 <>
                   <a href="/create-listings" className=" flex justify-start">
@@ -119,6 +111,20 @@ export default function Navbar() {
                       Profile
                     </Button>
                   </a>
+                  <a href="/" className="mx-auto">
+                    <SheetTitle>StudioTrap</SheetTitle>
+                  </a>
+
+                  {session ? (
+                    <div className=" mt-2 text-xs text-gray-600 flex mx-auto p-4 absolute inset-x-0 bottom-0 text-center justify-center">
+                      Signed in as &nbsp;
+                      <a href="/profile">
+                        <span className="text-slate-500">
+                          {session?.user.name}
+                        </span>
+                      </a>
+                    </div>
+                  ) : null}
                 </>
               </SheetClose>
             </SheetFooter>
