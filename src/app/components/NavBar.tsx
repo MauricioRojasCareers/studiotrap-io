@@ -105,22 +105,19 @@ export default function Navbar() {
                         </Button>
                       </a>
                     ) : null}
-
-                    <a href="/dashboard" className=" flex justify-start">
-                      <Button type="submit" variant="ghost">
-                        Dashboard
-                      </Button>
-                    </a>
                     {session ? (
-                      <a
-                        href="/create-listings"
-                        className=" flex justify-start"
-                      >
-                        <Button type="submit" variant="link">
-                          Create Listing
+                      <a href="/dashboard" className=" flex justify-start">
+                        <Button type="submit" variant="ghost">
+                          Dashboard
                         </Button>
                       </a>
                     ) : null}
+
+                    <a href="/create-listings" className=" flex justify-start">
+                      <Button type="submit" variant="link">
+                        Create Listing
+                      </Button>
+                    </a>
                   </SheetDescription>
 
                   <SheetTitle className="mx-auto p-8">
