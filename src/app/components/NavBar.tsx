@@ -95,25 +95,32 @@ export default function Navbar() {
               <SheetClose asChild>
                 <>
                   <SheetDescription>
-                    <a
-                      href="/profile"
-                      className="outline-none focus:outline-none flex justify-start"
-                    >
-                      <Button type="submit" variant="ghost">
-                        Profile
-                      </Button>
-                    </a>
+                    {session ? (
+                      <a
+                        href="/profile"
+                        className="outline-none focus:outline-none flex justify-start"
+                      >
+                        <Button type="submit" variant="ghost">
+                          Profile
+                        </Button>
+                      </a>
+                    ) : null}
 
                     <a href="/dashboard" className=" flex justify-start">
                       <Button type="submit" variant="ghost">
                         Dashboard
                       </Button>
                     </a>
-                    <a href="/create-listings" className=" flex justify-start">
-                      <Button type="submit" variant="link">
-                        Create Listing
-                      </Button>
-                    </a>
+                    {session ? (
+                      <a
+                        href="/create-listings"
+                        className=" flex justify-start"
+                      >
+                        <Button type="submit" variant="link">
+                          Create Listing
+                        </Button>
+                      </a>
+                    ) : null}
                   </SheetDescription>
 
                   <SheetTitle className="mx-auto p-8">
