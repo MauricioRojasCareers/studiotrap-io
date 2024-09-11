@@ -122,9 +122,12 @@ export default function Navbar() {
 
                   <SheetTitle className="mx-auto p-8">
                     {" "}
-                    <a href="/">StudioTrap </a>
+                    <a href="/">
+                      <Button variant="ghost" className="rounded-full">
+                        StudioTrap{" "}
+                      </Button>
+                    </a>{" "}
                     <div className="absolute top-0 left-0  mx-auto">
-                      {" "}
                       <Button
                         onClick={handleSign}
                         variant="ghost"
