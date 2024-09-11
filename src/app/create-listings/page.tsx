@@ -25,24 +25,26 @@ const formSchema = z.object({
 
 import { SubmitHandler } from "react-hook-form";
 
-type Inputs = {
-  example: string;
-  exampleRequired: string;
-};
+interface CreateListingData {
+  address: string;
+  pricePerHour: number;
+  imageUrl: string;
+}
 
 export default function CreateListingForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  } = useForm<CreateListingData>();
+  const onSubmit: SubmitHandler<CreateListingData> = (data) =>
+    console.log(data);
 
   const form = useForm();
 
   return (
     <motion.div
-      className="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff]" // Background gradient
+      className="h-screen w-full  p-4 flex flex-col items-center bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff]" // Background gradient
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
@@ -50,7 +52,7 @@ export default function CreateListingForm() {
       {/* Form Section */}
       <Form {...form}>
         <motion.form
-          className="space-y-6 p-8 bg-white rounded-xl shadow-xl max-w-md w-full"
+          className="space-y-6 p-8 bg-white rounded-xl shadow-xl max-w-md w-full mt-20 md:w-80"
           onSubmit={handleSubmit(onSubmit)}
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -61,7 +63,7 @@ export default function CreateListingForm() {
           </h1>
 
           {/* Username Field */}
-          <FormField
+          {/* <FormField
             control={form.control}
             name="username"
             render={({ field }) => (
@@ -78,7 +80,7 @@ export default function CreateListingForm() {
                 <FormMessage />
               </FormItem>
             )}
-          />
+          /> */}
 
           {/* Address Field */}
           <FormField
@@ -122,7 +124,7 @@ export default function CreateListingForm() {
           />
 
           {/* Image Upload Field */}
-          <FormField
+          {/* <FormField
             control={form.control}
             name="image"
             render={({ field }) => (
@@ -134,7 +136,7 @@ export default function CreateListingForm() {
                     accept="image/*"
                     className="p-3 rounded-lg bg-gray-50 text-black shadow-sm"
                     {...field}
-                    {...register("image")}
+                    {...register("imageUrl")}
                     onChange={(e) => {
                       const file = e.target.files?.[0];
                       field.onChange(file);
@@ -144,7 +146,7 @@ export default function CreateListingForm() {
                 <FormMessage />
               </FormItem>
             )}
-          />
+          /> */}
 
           {/* Submit and Cancel Buttons */}
           <div className="flex justify-between">
