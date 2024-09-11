@@ -74,7 +74,9 @@ export default function Navbar() {
             ""
           ) : (
             <Link href={"/signup"}>
-              <Button variant={"ghost"}>Sign Up</Button>
+              <Button variant={"ghost"} onClick={handleSign}>
+                Sign Up
+              </Button>
             </Link>
           )}
         </div>
@@ -87,33 +89,43 @@ export default function Navbar() {
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="container">
-            <SheetHeader>
-              <SheetDescription>
-                {/* Profile and navigation options */}
-              </SheetDescription>
-            </SheetHeader>
+            <SheetHeader></SheetHeader>
 
             <SheetFooter>
               <SheetClose asChild>
                 <>
-                  <a href="/create-listings" className=" flex justify-start">
-                    <Button type="submit" variant="link">
-                      Create Listing
-                    </Button>
-                  </a>
-                  <a href="/dashboard" className=" flex justify-start">
-                    <Button type="submit" variant="link">
-                      Dashboard
-                    </Button>
-                  </a>
-                  <a href="/profile" className=" flex justify-start">
-                    <Button type="submit" variant="link">
-                      Profile
-                    </Button>
-                  </a>
-                  <a href="/" className="mx-auto">
-                    <SheetTitle>StudioTrap</SheetTitle>
-                  </a>
+                  <SheetDescription>
+                    <a href="/create-listings" className=" flex justify-start">
+                      <Button type="submit" variant="link">
+                        Create Listing
+                      </Button>
+                    </a>
+                    <a href="/dashboard" className=" flex justify-start">
+                      <Button type="submit" variant="link">
+                        Dashboard
+                      </Button>
+                    </a>
+                    <a href="/profile" className=" flex justify-start">
+                      <Button type="submit" variant="link">
+                        Profile
+                      </Button>
+                    </a>
+                  </SheetDescription>
+
+                  <SheetTitle className="mx-auto p-8">
+                    {" "}
+                    <a href="/">StudioTrap </a>
+                    <div className="absolute top-0 left-0  mx-auto">
+                      {" "}
+                      <Button
+                        onClick={handleSign}
+                        variant="ghost"
+                        className="mt-2 ml-2"
+                      >
+                        {session ? "Sign Out" : "Sign In"}
+                      </Button>
+                    </div>
+                  </SheetTitle>
 
                   {session ? (
                     <div className=" mt-2 text-xs text-gray-600 flex mx-auto p-4 absolute inset-x-0 bottom-0 text-center justify-center">
@@ -124,7 +136,9 @@ export default function Navbar() {
                         </span>
                       </a>
                     </div>
-                  ) : null}
+                  ) : (
+                    <Link href="/api/auth/signin"></Link>
+                  )}
                 </>
               </SheetClose>
             </SheetFooter>
