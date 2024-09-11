@@ -190,20 +190,9 @@ export default function Navbar() {
                     )}
                   </SheetHeader>
 
-                  {!session ? (
-                    <div className=" mt-2 text-xs text-gray-600 flex mx-auto p-4 absolute inset-x-0 bottom-0 text-center justify-center">
-                      StudioTrap LLC.
-                    </div>
-                  ) : (
-                    <div className=" mt-2 text-xs text-gray-600 flex mx-auto p-4 absolute inset-x-0 bottom-0 text-center justify-center">
-                      Signed in as &nbsp;
-                      <a href="/profile">
-                        <span className="text-slate-500">
-                          {session?.user.name}
-                        </span>
-                      </a>
-                    </div>
-                  )}
+                  <div className=" mt-2 text-xs text-gray-600 flex mx-auto p-4 absolute inset-x-0 bottom-0 text-center justify-center">
+                    StudioTrap LLC.
+                  </div>
                 </>
               </SheetClose>
             </SheetFooter>
