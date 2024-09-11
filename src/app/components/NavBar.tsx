@@ -5,7 +5,8 @@ import { useState } from "react";
 import { Button } from "../components/ui/button";
 import Link from "next/link";
 import AdvancedSearchBar from "../components/AdvancedSearchBar";
-import { FaBars, FaCog } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
+import { UserCog } from "lucide-react";
 import Image from "next/image";
 import {
   Sheet,
@@ -96,11 +97,11 @@ export default function Navbar() {
                     {session ? (
                       <Button type="submit" variant="ghost" className="w-full">
                         <a
-                          href="/profile"
+                          href="/"
                           className="outline-none focus:outline-none flex justify-start w-full"
                         >
                           {" "}
-                          Profile{" "}
+                          Home{" "}
                         </a>
                       </Button>
                     ) : null}
@@ -145,24 +146,30 @@ export default function Navbar() {
                     )}
                   </SheetDescription>
 
-                  <SheetTitle className="mx-auto p-8 ">
-                    {" "}
+                  <SheetTitle className="mx-auto p-8">
                     {session?.user?.image && (
-                      <div className="flex justify-center">
-                        <Image
-                          src={session.user.image}
-                          alt="Users Image"
-                          width={60}
-                          height={60}
-                          className="rounded-full"
-                        />
-                      </div>
+                      <a href="/profile">
+                        <div className="flex justify-center items-center ">
+                          {" "}
+                          <Image
+                            src={session.user.image}
+                            alt="Users Image"
+                            width={60}
+                            height={60}
+                            className="rounded-full"
+                          />
+                          <UserCog
+                            size={30}
+                            className="absolute right-0 mr-6 "
+                          />
+                        </div>
+                      </a>
                     )}{" "}
                     <a href="/" className="">
                       {!session ? null : session?.user.name}
                     </a>{" "}
                     <div className="absolute top-0 left-0 mx-auto">
-                      <div className="flex flex-row">
+                      <div className="flex flex-row items-center p-2">
                         <Button
                           onClick={handleSign}
                           variant="ghost"
