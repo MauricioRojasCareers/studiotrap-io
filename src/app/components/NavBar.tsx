@@ -181,14 +181,15 @@ export default function Navbar() {
                       <>
                         <a href="/">
                           <Button variant="ghost">StudioTrap</Button>
+
+                          <Image
+                            src="/studiotrap.png"
+                            alt="studiotrap logo"
+                            width={120}
+                            height={120}
+                            className="border-full"
+                          />
                         </a>
-                        <Image
-                          src="/studiotrap.png"
-                          alt="studiotrap logo"
-                          width={120}
-                          height={120}
-                          className="border-full"
-                        ></Image>
                       </>
                     )}
                   </SheetHeader>
