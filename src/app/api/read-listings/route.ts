@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 export async function GET() {
   try {
     const listings = await prisma.listing.findMany(); // Fetch all listings from the database
-    console.log(listings.length);
+    console.log(listings);
     return NextResponse.json({ success: true, listings });
   } catch (error) {
     console.error("Error fetching listings:", error);

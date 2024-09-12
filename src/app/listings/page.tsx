@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion"; // For animations
+import { Console } from "console";
 
 interface Listing {
   id: string;
@@ -23,11 +24,13 @@ export default function Listings() {
           headers: {
             "Content-Type": "application/json",
           },
+          cache: "no-store",
         });
 
         const result = await response.json();
         if (response.ok) {
           setListings(result.listings); // Set the fetched listings to state
+          console.log(result);
           setError(null);
         } else {
           setError("Failed to fetch listings.");
