@@ -70,7 +70,7 @@ export default function Listings() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }} // Background gradient
     >
-      {/* <h1 className="text-3xl font-bold text-center mb-6">Listings</h1> */}
+      <h2 className="text-3xl font-bold text-center mb-6">Listings</h2>
 
       {listings.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl w-full">

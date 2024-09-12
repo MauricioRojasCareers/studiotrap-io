@@ -5,7 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 
-import { Button } from "~/app/components/ui/button";
+import { useRouter } from "next/navigation";
+
 import {
   Form,
   FormControl,
@@ -33,6 +34,7 @@ interface CreateListingData {
 }
 
 export default function CreateListingForm() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -56,7 +58,9 @@ export default function CreateListingForm() {
       const result = await response.json();
       if (response.ok) {
         // Handle success
-        alert("Listing created successfully!");
+        // alert("Listing created successfully!");
+        router.push("/listings");
+
         console.log(result);
       } else {
         // Handle failure
