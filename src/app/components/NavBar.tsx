@@ -6,7 +6,7 @@ import { Button } from "../components/ui/button";
 import Link from "next/link";
 import AdvancedSearchBar from "../components/AdvancedSearchBar";
 import { FaBars } from "react-icons/fa";
-import { UserCog } from "lucide-react";
+import { Ellipsis, House, UserCog } from "lucide-react";
 import Image from "next/image";
 import {
   Sheet,
@@ -18,6 +18,15 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "./ui/sheet";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "~/app/components/ui/dropdown-menu";
 
 export default function Navbar() {
   const { data: session } = useSession();
@@ -36,40 +45,108 @@ export default function Navbar() {
 
   return (
     <nav className="border-b border-gray-200 py-3 bg-white shadow-sm top-0 z-50 w-full rounded">
-      <div className="container mx-auto flex items-center justify-between px-4 lg:px-8">
-        {/* Logo or Brand Name */}
-        <Link href="/" className="text-2xl font-bold text-gray-900">
-          Studio<span className="text-[#33134A]">Trap</span>
-        </Link>
+      <div className="container mx-auto flex items-center justify-between px-4 lg:px-8 ">
+        <div className="flex flex-row gap-6">
+          {/* Logo or Brand Name */}
+          {/* {session ? (
+            <Image
+              src={session?.user.image as string} // Type assertion to ensure TypeScript knows it's a string
+              alt="User Profile"
+              width={40}
+              height={40}
+              className="rounded-full"
+            />
+          ) : (
+            <Image
+              src="/studiotrap.png"
+              alt="studiotrap logo"
+              width={40}
+              height={40}
+              className="border-full"
+            />
+          )} */}
+
+          <Link href="/" className="text-2xl font-bold text-gray-900">
+            Studio<span className="text-[#33134A]">Trap</span>
+          </Link>
+        </div>
         {/* Advanced Search Bar */}
-        <div className="hidden md:flex flex-grow mx-4 lg:mx-8">
+        {/* <div className="hidden md:flex flex-grow mx-4 lg:mx-8">
           <AdvancedSearchBar />
+        </div> */}
+        <div className="w-full flex justify-center ">
+          {/* <AdvancedSearchBar /> */}
         </div>
         {/* Navigation Links (Hidden on mobile, shown on larger screens) */}
-        <div className="hidden md:flex space-x-8 items-center">
+        <div className="hidden md:flex items-center">
           <Link
             href={session ? "/" : "/api/auth/signin"}
             className="text-gray-700 hover:text-gray-900 font-medium flex items-center text-center"
           >
-            {/* Profile Icon */}
-            {session ? (
-              <div className="flex flex-row justify-center items-center gap-2 ml-4">
-                <Image
-                  src={session.user.image as string} // Type assertion to ensure TypeScript knows it's a string
-                  alt="User Profile"
-                  width={40}
-                  height={40}
-                  className="rounded-full"
-                />
-
-                <Button variant="ghost" onClick={handleSign}>
-                  Sign Out
-                </Button>
-              </div>
-            ) : (
-              <Button variant={"ghost"}>Log In</Button>
-            )}
+            {" "}
           </Link>
+          {/* Profile Icon */}
+          {session ? (
+            <div className="flex flex-row justify-center items-center gap-8 ">
+              <a href="/">
+                <House />
+              </a>
+              <DropdownMenu>
+                <DropdownMenuTrigger className="p-2">
+                  <Ellipsis className="" size={30} />
+
+                  <DropdownMenuContent className="flex gap-4 p-2 mx-auto">
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>
+                      <a href="/listings">All Listings</a>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <a
+                        href="/profile"
+                        className="flex flex-row items-center gap-3"
+                      >
+                        <Image
+                          src={session?.user.image as string}
+                          alt="profile image"
+                          width={30}
+                          height={30}
+                          className="rounded-full"
+                        />
+                        Profile{" "}
+                      </a>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <a href="/dashboard">Dashboard</a>
+                    </DropdownMenuItem>
+
+                    <DropdownMenuItem className="bg-red-500 hover:bg-red-500 text-xs focus:bg-red-300 ">
+                      <button className=" text-white " onClick={handleSign}>
+                        Sign Out
+                      </button>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenuTrigger>
+              </DropdownMenu>
+              {/* <Button variant="link" size="noButton" onClick={handleSign}>
+                Sign Out
+              </Button> */}
+              <Link href="create-listings">
+                <Button variant="link" size="noButton">
+                  Create a Listing{" "}
+                </Button>
+              </Link>
+            </div>
+          ) : (
+            <div className=" flex flex-row items-center gap-2">
+              <a href="/">
+                <House />
+              </a>
+              <Button variant={"ghost"} onClick={handleSign}>
+                Log In
+              </Button>
+            </div>
+          )}
+
           {/* Display "Sign Up" button if not logged in */}
           {session ? (
             ""
@@ -134,7 +211,7 @@ export default function Navbar() {
                           variant="default"
                           className="w-full "
                         >
-                          <div className=""> Create Listing </div>
+                          Create Listing
                         </Button>
                       </a>
                     )}
