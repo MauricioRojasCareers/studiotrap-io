@@ -168,7 +168,7 @@ export default function Navbar() {
             <SheetFooter>
               <SheetClose asChild>
                 <>
-                  <SheetDescription>
+                  <SheetDescription className="">
                     {session ? (
                       <Button type="submit" variant="ghost" className="w-full">
                         <a
@@ -191,6 +191,17 @@ export default function Navbar() {
                         </a>
                       </Button>
                     ) : null}
+                    {session ? (
+                      <Button type="submit" variant="ghost" className="w-full">
+                        <a
+                          href="/listings"
+                          className="flex justify-start w-full"
+                        >
+                          {" "}
+                          All Listings
+                        </a>
+                      </Button>
+                    ) : null}
 
                     {session ? (
                       <Button type="submit" variant="link" className="w-full">
@@ -201,42 +212,29 @@ export default function Navbar() {
                           Create Listing
                         </a>
                       </Button>
-                    ) : (
-                      <a
-                        href="/create-listings"
-                        className=" flex justify-center w-full "
-                      >
-                        <Button
-                          type="submit"
-                          variant="default"
-                          className="w-full "
-                        >
-                          Create Listing
-                        </Button>
-                      </a>
-                    )}
+                    ) : null}
                   </SheetDescription>
 
-                  <SheetTitle className="mx-auto p-8">
+                  <SheetTitle className="flex flex-col items-center gap-3 pt-4 pb-2">
                     {session?.user?.image && (
                       <a href="/profile">
-                        <div className="flex justify-center items-center ">
+                        <div className="flex justify-center items-center">
                           {" "}
                           <Image
                             src={session.user.image}
                             alt="Users Image"
                             width={60}
                             height={60}
-                            className="rounded-full"
+                            className="rounded-full "
                           />
                           <UserCog
                             size={30}
-                            className="absolute right-0 mr-6 "
+                            className="absolute right-0 m-10"
                           />
                         </div>
                       </a>
                     )}{" "}
-                    <a href="/" className="">
+                    <a href="/" className="flex justify-center">
                       {!session ? null : session?.user.name}
                     </a>{" "}
                     <div className="absolute top-0 left-0 mx-auto">
@@ -251,12 +249,11 @@ export default function Navbar() {
                       </div>
                     </div>
                   </SheetTitle>
-                  <SheetHeader className="text-xs mt-6 flex items-center gap-4">
+                  <SheetHeader className="text-xs flex items-center pt-4 mt-10">
+                    <a href="/">StudioTrap</a>
                     {session ? null : (
-                      <>
-                        <a href="/">
-                          <Button variant="ghost">StudioTrap</Button>
-
+                      <div className="flex flex-col p-2 items-center gap-4 ">
+                        <a href="/" className="">
                           <Image
                             src="/studiotrap.png"
                             alt="studiotrap logo"
@@ -265,7 +262,19 @@ export default function Navbar() {
                             className="border-full"
                           />
                         </a>
-                      </>
+                        <a
+                          href="/create-listings"
+                          className=" flex justify-center w-full "
+                        >
+                          <Button
+                            type="submit"
+                            variant="default"
+                            className="w-full "
+                          >
+                            Create Listing
+                          </Button>
+                        </a>
+                      </div>
                     )}
                   </SheetHeader>
 
