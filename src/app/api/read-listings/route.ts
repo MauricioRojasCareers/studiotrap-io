@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 const prisma = new PrismaClient();
 
@@ -10,6 +11,7 @@ export async function GET() {
     console.log(listings);
     const response = NextResponse.json({ success: true, listings });
     response.headers.set("Cache-Control", "no-store");
+    revalidatePath("/listings");
 
     return response;
   } catch (error) {
