@@ -196,7 +196,7 @@ export default function CreateListingForm() {
               className="px-4 py-2 rounded-lg bg-[#261c1c81] text-black font-bold hover:bg-[#000000b3] transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => console.log("Cancel")}
+              onClick={() => router.push("/")}
             >
               Cancel
             </motion.button>
