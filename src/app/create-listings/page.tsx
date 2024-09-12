@@ -127,7 +127,7 @@ export default function CreateListingForm() {
                 <FormControl>
                   <Input
                     placeholder="1234 Main St"
-                    className="p-3 rounded-lg bg-gray-50 text-black shadow-sm"
+                    className="p-3 rounded-lg bg-gray-50 text-black shadow-sm text-[16px]"
                     {...field}
                     {...register("address")}
                   />
@@ -150,7 +150,7 @@ export default function CreateListingForm() {
                   <Input
                     type="number"
                     placeholder="Enter price per hour"
-                    className="p-3 rounded-lg bg-gray-50 text-black shadow-sm"
+                    className="p-3 rounded-lg bg-gray-50 text-black shadow-sm text-[16px]"
                     {...field}
                     {...register("pricePerHour", { valueAsNumber: true })}
                   />
