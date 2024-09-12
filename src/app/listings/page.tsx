@@ -20,7 +20,7 @@ export default function Listings() {
     const fetchListings = async () => {
       try {
         const response = await fetch("/api/read-listings", {
-          cache: "no-store",
+          cache: "no-store", // Ensure no caching for dynamic data
         });
 
         const result = await response.json();
