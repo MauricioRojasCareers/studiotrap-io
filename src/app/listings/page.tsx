@@ -20,10 +20,6 @@ export default function Listings() {
     const fetchListings = async () => {
       try {
         const response = await fetch("/api/read-listings", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
           cache: "no-store",
         });
 
