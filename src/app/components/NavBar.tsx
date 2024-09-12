@@ -1,7 +1,7 @@
 "use client"; // Ensure this component is treated as a Client Component
 
 import { useSession, signOut, signIn } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../components/ui/button";
 import Link from "next/link";
 import AdvancedSearchBar from "../components/AdvancedSearchBar";
@@ -42,6 +42,23 @@ export default function Navbar() {
       signIn();
     }
   };
+
+  useEffect(() => {
+    const handleOrientationChange = () => {
+      if (window.innerWidth > window.innerHeight) {
+        // Close the sheet when in landscape mode
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleOrientationChange);
+    window.addEventListener("orientationchange", handleOrientationChange);
+
+    return () => {
+      window.removeEventListener("resize", handleOrientationChange);
+      window.removeEventListener("orientationchange", handleOrientationChange);
+    };
+  }, []);
 
   return (
     <nav className="border-b border-gray-200 py-3 bg-white shadow-sm top-0 z-50 w-full rounded">
