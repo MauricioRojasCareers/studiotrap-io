@@ -15,13 +15,11 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
+    // Intial Settin Of Width
+    setShowMobileMenu(innerWidth < 768);
+
     const handleOrientationChange = () => {
-      if (window.innerWidth >= 768) {
-        // Close the sheet when in landscape mode
-        setShowMobileMenu(false);
-      } else {
-        setShowMobileMenu(true);
-      }
+      setShowMobileMenu(window.innerWidth < 768);
     };
 
     window.addEventListener("resize", handleOrientationChange);
