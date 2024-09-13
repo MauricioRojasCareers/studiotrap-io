@@ -4,8 +4,6 @@ import { useSession, signOut, signIn } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { Button } from "../components/ui/button";
 import Link from "next/link";
-import AdvancedSearchBar from "../components/AdvancedSearchBar";
-import { FaBars } from "react-icons/fa";
 import { Ellipsis, House, UserCog } from "lucide-react";
 import Image from "next/image";
 import {
@@ -23,19 +21,17 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/app/components/ui/dropdown-menu";
+import { FaBars } from "react-icons/fa";
 
 export default function Navbar() {
   const { data: session } = useSession();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const ListingsPressed = () => {};
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleSign = () => {
-    setIsMenuOpen(false);
+    setMenuOpen(false);
     if (session) {
       signOut();
     } else {
@@ -47,7 +43,7 @@ export default function Navbar() {
     const handleOrientationChange = () => {
       if (window.innerWidth > window.innerHeight) {
         // Close the sheet when in landscape mode
-        setIsMenuOpen(false);
+        setMenuOpen(false);
       }
     };
 
@@ -65,24 +61,6 @@ export default function Navbar() {
       <div className="container mx-auto flex items-center justify-between px-4 lg:px-8 ">
         <div className="flex flex-row gap-6">
           {/* Logo or Brand Name */}
-          {/* {session ? (
-            <Image
-              src={session?.user.image as string} // Type assertion to ensure TypeScript knows it's a string
-              alt="User Profile"
-              width={40}
-              height={40}
-              className="rounded-full"
-            />
-          ) : (
-            <Image
-              src="/studiotrap.png"
-              alt="studiotrap logo"
-              width={40}
-              height={40}
-              className="border-full"
-            />
-          )} */}
-
           <Link href="/" className="text-2xl font-bold text-gray-900">
             Studio<span className="text-[#33134A]">Trap</span>
           </Link>
@@ -104,7 +82,7 @@ export default function Navbar() {
           </Link>
           {/* Profile Icon */}
           {session ? (
-            <div className="flex flex-row justify-center items-center gap-8 ">
+            <div className="hidden md:flex flex-row justify-center items-center gap-8 ">
               <a href="/">
                 <House />
               </a>
@@ -144,9 +122,6 @@ export default function Navbar() {
                   </DropdownMenuContent>
                 </DropdownMenuTrigger>
               </DropdownMenu>
-              {/* <Button variant="link" size="noButton" onClick={handleSign}>
-                Sign Out
-              </Button> */}
               <Link href="create-listings">
                 <Button variant="link" size="noButton">
                   Create a Listing{" "}
@@ -181,55 +156,63 @@ export default function Navbar() {
               <FaBars className="text-2xl" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="container">
+          <SheetContent side="right" className="container md:mt-2">
             <SheetFooter>
               <SheetClose asChild>
                 <>
                   <SheetDescription className="">
-                    {session ? (
-                      <Button type="submit" variant="ghost" className="w-full">
-                        <a
-                          href="/"
-                          className="outline-none focus:outline-none flex justify-start w-full"
+                    {session && (
+                      <>
+                        <Button
+                          type="submit"
+                          variant="ghost"
+                          className="w-full"
                         >
-                          {" "}
-                          Home{" "}
-                        </a>
-                      </Button>
-                    ) : null}
-                    {session ? (
-                      <Button type="submit" variant="ghost" className="w-full">
-                        <a
-                          href="/dashboard"
-                          className="flex justify-start w-full"
+                          <a
+                            href="/"
+                            className="outline-none focus:outline-none flex justify-start w-full"
+                          >
+                            {" "}
+                            Home{" "}
+                          </a>
+                        </Button>
+                        <Button
+                          type="submit"
+                          variant="ghost"
+                          className="w-full"
                         >
-                          {" "}
-                          Dashboard
-                        </a>
-                      </Button>
-                    ) : null}
-                    {session ? (
-                      <Button type="submit" variant="ghost" className="w-full">
-                        <a
-                          href="/listings"
-                          className="flex justify-start w-full"
+                          <a
+                            href="/dashboard"
+                            className="flex justify-start w-full"
+                          >
+                            {" "}
+                            Dashboard
+                          </a>
+                        </Button>
+                        <Button
+                          type="submit"
+                          variant="ghost"
+                          className="w-full"
                         >
-                          {" "}
-                          All Listings
-                        </a>
-                      </Button>
-                    ) : null}
+                          <a
+                            href="/listings"
+                            className="flex justify-start w-full"
+                          >
+                            {" "}
+                            All Listings
+                          </a>
+                        </Button>
 
-                    {session ? (
-                      <Button type="submit" variant="link" className="w-full">
-                        <a
-                          href="/create-listings"
-                          className=" flex justify-start w-full"
-                        >
-                          Create Listing
-                        </a>
-                      </Button>
-                    ) : null}
+                        <Button type="submit" variant="link" className="w-full">
+                          <a
+                            href="/create-listings"
+                            className=" flex justify-start w-full"
+                          >
+                            Create Listing
+                          </a>
+                        </Button>
+                      </>
+                    )}
                   </SheetDescription>
 
                   <SheetTitle className="flex flex-col items-center gap-3 pt-4 pb-2">
@@ -254,21 +237,19 @@ export default function Navbar() {
                     <a href="/" className="flex justify-center">
                       {!session ? null : session?.user.name}
                     </a>{" "}
-                    <div className="absolute top-0 left-0 mx-auto">
-                      <div className="flex flex-row items-center p-2">
-                        <Button
-                          onClick={handleSign}
-                          variant="ghost"
-                          className="mt-2 ml-2"
-                        >
-                          {session ? "Sign Out" : "Sign In"}
-                        </Button>
-                      </div>
+                    <div className="absolute top-0 left-0 mx-auto md:mb-2">
+                      <Button
+                        onClick={handleSign}
+                        variant="ghost"
+                        className="mt-2 ml-2"
+                      >
+                        {session ? "Sign Out" : "Sign In"}
+                      </Button>
                     </div>
                   </SheetTitle>
                   <SheetHeader className="text-xs flex items-center pt-4 mt-10">
                     <a href="/">StudioTrap</a>
-                    {session ? null : (
+                    {!session && (
                       <div className="flex flex-col p-2 items-center gap-4 ">
                         <a href="/" className="">
                           <Image
@@ -307,41 +288,3 @@ export default function Navbar() {
     </nav>
   );
 }
-
-// Sheet closed stash  {session ? (
-//     <div className="w-full flex flex-col items-center h-screen">
-//     <Link href="/create-listings">
-//       <Button onClick={ListingsPressed} variant="link">
-//         Create a listing
-//       </Button>
-//     </Link>
-//     <Button
-//       variant="default"
-//       onClick={handleSign}
-//       className=" absolute bottom-0 m-4 "
-//     >
-//       Sign Out
-//     </Button>
-//   </div>
-// ) : (
-//   <div className="w-full flex flex-col space-y-4">
-//     <Link href="/api/auth/signin">
-//       <Button type="submit" className="w-full">
-//         Log In
-//       </Button>
-//     </Link>
-{
-  /* Add "Sign Up" button in mobile view when user is not logged in */
-}
-{
-  /* <Link href="/signup">
-                    <Button
-                      variant="default"
-                      className="w-full text-white bg-purple-200 hover:bg-purple-300"
-                    >
-                      Sign Up
-                    </Button>
-                  </Link>
-                </div> */
-}
-// )}

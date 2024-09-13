@@ -61,7 +61,6 @@ export default function CreateListingForm() {
         // alert("Listing created successfully!");
         router.push("/listings");
 
-        console.log(result);
       } else {
         // Handle failure
         alert(`Error: ${result.error || "Failed to create listing"}`);

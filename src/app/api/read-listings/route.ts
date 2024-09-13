@@ -8,7 +8,6 @@ const prisma = new PrismaClient();
 export async function GET() {
   try {
     const listings = await prisma.listing.findMany(); // Fetch all listings from the database
-    console.log(listings);
     const response = NextResponse.json({ success: true, listings });
     response.headers.set("Cache-Control", "no-store");
     revalidatePath("/listings");

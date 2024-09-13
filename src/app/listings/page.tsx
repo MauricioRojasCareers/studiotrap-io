@@ -2,10 +2,7 @@
 
 import { motion } from "framer-motion"; // For animations
 
-import { PrismaClient } from "@prisma/client";
 import { useEffect, useState } from "react";
-
-const prisma = new PrismaClient();
 
 interface Listing {
   id: string;
@@ -14,8 +11,6 @@ interface Listing {
 }
 
 export default function Listings() {
-  // const listings = await prisma.listing.findMany();
-  // console.log(listings);
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -31,7 +26,6 @@ export default function Listings() {
         const result = await response.json();
         if (response.ok) {
           setListings(result.listings); // Set the fetched listings to state
-          console.log(result);
           setError(null);
         } else {
           setError("Failed to fetch listings.");
