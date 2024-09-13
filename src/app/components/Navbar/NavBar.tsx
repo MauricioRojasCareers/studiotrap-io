@@ -16,7 +16,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleOrientationChange = () => {
-      if (window.innerWidth > 768) {
+      if (window.innerWidth >= 768) {
         // Close the sheet when in landscape mode
         setShowMobileMenu(false);
       } else {
