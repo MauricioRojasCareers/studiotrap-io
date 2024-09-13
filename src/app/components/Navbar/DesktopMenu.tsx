@@ -1,5 +1,4 @@
 import { useSession, signOut, signIn } from "next-auth/react";
-import { useState } from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { Ellipsis, House } from "lucide-react";
