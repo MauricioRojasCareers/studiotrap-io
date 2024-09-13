@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../server/auth";
 
 import ClientWrapper from "./components/ClientWrapper";
-import Navbar from "./components/NavBar";
+import Navbar from "./components/Navbar/NavBar";
 
 export const metadata = {
   title: "StudioTrap",
