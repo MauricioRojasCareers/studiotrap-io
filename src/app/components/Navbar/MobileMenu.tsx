@@ -14,11 +14,12 @@ import { FaBars } from "react-icons/fa";
 import { UserCog } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { MenuProps } from "./NavBar";
 
-const MobileMenu = () => {
+const MobileMenu = ({menuOpen, setMenuOpen}: MenuProps) => {
   const { data: session } = useSession();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const pathName = usePathname();
 
   const handleSign = () => {
     setMenuOpen(false);
@@ -29,8 +30,10 @@ const MobileMenu = () => {
     }
   };
 
+  const closeMenu = () => setMenuOpen(false);
+
   return (
-    <Sheet>
+    <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
       <SheetTrigger asChild>
         <Button variant="ghost" className="md:hidden lg:hidden">
           <FaBars className="text-2xl" />
@@ -40,49 +43,69 @@ const MobileMenu = () => {
         <SheetFooter>
           <SheetClose asChild>
             <>
-              <SheetDescription className="">
-                {session && (
-                  <>
-                    <Button type="submit" variant="ghost" className="w-full">
-                      <Link
-                        href="/"
-                        className="outline-none focus:outline-none flex justify-start w-full"
-                      >
-                        Home
-                      </Link>
-                    </Button>
-                    <Button type="submit" variant="ghost" className="w-full">
-                      <Link
-                        href="/dashboard"
-                        className="flex justify-start w-full"
-                      >
-                        Dashboard
-                      </Link>
-                    </Button>
-                    <Button type="submit" variant="ghost" className="w-full">
-                      <Link
-                        href="/listings"
-                        className="flex justify-start w-full"
-                      >
-                        All Listings
-                      </Link>
-                    </Button>
+              {session && (
+                <SheetDescription>
+                  <Button
+                    type="submit"
+                    variant={pathName.endsWith("/") ? "link" : "ghost"}
+                    className="w-full"
+                    onClick={closeMenu}
+                  >
+                    <Link
+                      href="/"
+                      className="outline-none focus:outline-none flex justify-start w-full"
+                    >
+                      Home
+                    </Link>
+                  </Button>
+                  <Button
+                    type="submit"
+                    variant={pathName.endsWith("/dashboard") ? "link" : "ghost"}
+                    className="w-full"
+                    onClick={closeMenu}
+                  >
+                    <Link
+                      href="/dashboard"
+                      className="flex justify-start w-full"
+                    >
+                      Dashboard
+                    </Link>
+                  </Button>
+                  <Button
+                    type="submit"
+                    variant={pathName.endsWith("/listings") ? "link" : "ghost"}
+                    className="w-full"
+                    onClick={closeMenu}
+                  >
+                    <Link
+                      href="/listings"
+                      className="flex justify-start w-full"
+                    >
+                      All Listings
+                    </Link>
+                  </Button>
 
-                    <Button type="submit" variant="link" className="w-full">
-                      <Link
-                        href="/create-listings"
-                        className=" flex justify-start w-full"
-                      >
-                        Create Listing
-                      </Link>
-                    </Button>
-                  </>
-                )}
-              </SheetDescription>
+                  <Button
+                    type="submit"
+                    variant={
+                      pathName.endsWith("/create-listings") ? "link" : "ghost"
+                    }
+                    className="w-full"
+                    onClick={closeMenu}
+                  >
+                    <Link
+                      href="/create-listings"
+                      className=" flex justify-start w-full"
+                    >
+                      Create Listing
+                    </Link>
+                  </Button>
+                </SheetDescription>
+              )}
 
               <SheetTitle className="flex flex-col items-center gap-3 pt-4 pb-2">
                 {session?.user?.image && (
-                  <Link href="/profile">
+                  <Link href="/profile" onClick={closeMenu}>
                     <div className="flex justify-center items-center">
                       {" "}
                       <Image
@@ -96,7 +119,11 @@ const MobileMenu = () => {
                     </div>
                   </Link>
                 )}{" "}
-                <Link href="/" className="flex justify-center">
+                <Link
+                  href="/"
+                  className="flex justify-center"
+                  onClick={closeMenu}
+                >
                   {!session ? null : session?.user.name}
                 </Link>{" "}
                 <div className="absolute top-0 left-0 mx-auto md:mb-2">
@@ -110,7 +137,9 @@ const MobileMenu = () => {
                 </div>
               </SheetTitle>
               <SheetHeader className="text-xs flex items-center pt-4 mt-10">
-                <Link href="/">StudioTrap</Link>
+                <Link href="/" onClick={closeMenu}>
+                  StudioTrap
+                </Link>
                 {!session && (
                   <div className="flex flex-col p-2 items-center gap-4 ">
                     <Link href="/" className="">

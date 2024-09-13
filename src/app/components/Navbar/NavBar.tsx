@@ -1,13 +1,18 @@
 "use client"; // Ensure this component is treated as a Client Component
 
-import { useSession, signOut, signIn } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Link from "next/link";
 import MobileMenu from "./MobileMenu";
 import DesktopMenu from "./DesktopMenu";
 
+export type MenuProps = {
+  menuOpen: boolean;
+  setMenuOpen: Dispatch<SetStateAction<boolean>>;
+};
+
 export default function Navbar() {
   const [showMobileMenu, setShowMobileMenu] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleOrientationChange = () => {
@@ -36,7 +41,11 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {showMobileMenu ? <MobileMenu /> : <DesktopMenu />}
+        {showMobileMenu ? (
+          <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        ) : (
+          <DesktopMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        )}
       </div>
     </nav>
   );

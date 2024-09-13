@@ -12,10 +12,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/app/components/ui/dropdown-menu";
+import { MenuProps } from "./NavBar";
 
-const DesktopMenu = () => {
+const DesktopMenu = ({ menuOpen, setMenuOpen }: MenuProps) => {
   const { data: session } = useSession();
-  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleSign = () => {
     setMenuOpen(false);
@@ -34,7 +34,7 @@ const DesktopMenu = () => {
           <Link href="/">
             <House />
           </Link>
-          <DropdownMenu>
+          <DropdownMenu open={menuOpen} onOpenChange={setMenuOpen}>
             <DropdownMenuTrigger className="p-2">
               <Ellipsis className="" size={30} />
 
