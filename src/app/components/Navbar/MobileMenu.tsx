@@ -17,7 +17,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { MenuProps } from "./NavBar";
 
-const MobileMenu = ({menuOpen, setMenuOpen}: MenuProps) => {
+const MobileMenu = ({ menuOpen, setMenuOpen }: MenuProps) => {
   const { data: session } = useSession();
   const pathName = usePathname();
 
@@ -102,6 +102,7 @@ const MobileMenu = ({menuOpen, setMenuOpen}: MenuProps) => {
                   </Button>
                 </SheetDescription>
               )}
+              <SheetDescription />
 
               <SheetTitle className="flex flex-col items-center gap-3 pt-4 pb-2">
                 {session?.user?.image && (
@@ -113,9 +114,12 @@ const MobileMenu = ({menuOpen, setMenuOpen}: MenuProps) => {
                         alt="Users Image"
                         width={60}
                         height={60}
-                        className="rounded-full "
+                        className="rounded-full transition-transform transform active:scale-150"
                       />
-                      <UserCog size={30} className="absolute right-0 m-10" />
+                      <UserCog
+                        size={30}
+                        className="absolute right-0 m-10 transition-transform transform active:scale-75"
+                      />
                     </div>
                   </Link>
                 )}{" "}
@@ -130,7 +134,7 @@ const MobileMenu = ({menuOpen, setMenuOpen}: MenuProps) => {
                   <Button
                     onClick={handleSign}
                     variant="ghost"
-                    className="mt-2 ml-2"
+                    className="mt-2 ml-2 transition-transform transform active:scale-75"
                   >
                     {session ? "Sign Out" : "Sign In"}
                   </Button>

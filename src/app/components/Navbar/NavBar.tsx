@@ -31,7 +31,7 @@ export default function Navbar() {
 
   return (
     <nav className="border-b border-gray-200 py-3 bg-white shadow-sm top-0 z-50 w-full rounded">
-      <div className="container mx-auto flex items-center justify-between px-4 lg:px-8 ">
+      <div className="container mx-auto flex items-center justify-between px-4 lg:px-8">
         <div className="flex flex-row gap-6">
           {/* Logo or Brand Name */}
           <Link
