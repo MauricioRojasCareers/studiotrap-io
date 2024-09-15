@@ -34,25 +34,25 @@ export default async function ProfilePage() {
               Overview
             </Link>
             <Link
-              href="/listings/manage"
+              href="/"
               className="rounded-full bg-purple-500 text-white text-center py-2 font-semibold hover:bg-purple-700 transition"
             >
               My Listings
             </Link>
             <Link
-              href="/bookings"
+              href="/"
               className="rounded-full bg-purple-500 text-white text-center py-2 font-semibold hover:bg-purple-700 transition"
             >
               Booking History
             </Link>
             <Link
-              href="/reviews"
+              href="/"
               className="rounded-full bg-purple-500 text-white text-center py-2 font-semibold hover:bg-purple-700 transition"
             >
               My Reviews
             </Link>
             <Link
-              href="/account/settings"
+              href=""
               className="rounded-full bg-purple-500 text-white text-center py-2 font-semibold hover:bg-purple-700 transition"
             >
               Account Settings
