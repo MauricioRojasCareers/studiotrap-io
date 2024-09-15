@@ -34,7 +34,10 @@ export default function Navbar() {
       <div className="container mx-auto flex items-center justify-between px-4 lg:px-8 ">
         <div className="flex flex-row gap-6">
           {/* Logo or Brand Name */}
-          <Link href="/" className="text-2xl font-bold text-gray-900">
+          <Link
+            href="/"
+            className="text-2xl font-bold text-gray-900 hover:text-[#6b289c] transition-transform transform hover:scale-105 active:scale-95"
+          >
             Studio<span className="text-[#33134A]">Trap</span>
           </Link>
         </div>

@@ -30,12 +30,28 @@ const DesktopMenu = ({ menuOpen, setMenuOpen }: MenuProps) => {
       {/* Profile Icon */}
       {session ? (
         <div className="hidden md:flex flex-row justify-center items-center gap-8 ">
-          <Link href="/">
-            <House />
+          <Link href="/" className="">
+            <Button
+              variant="ghost"
+              size="noButton"
+              className="text-black p-2 transition-transform transform hover:scale-125 active:scale-95"
+            >
+              <House size={30} />
+            </Button>
           </Link>
           <DropdownMenu open={menuOpen} onOpenChange={setMenuOpen}>
-            <DropdownMenuTrigger className="p-2">
-              <Ellipsis className="" size={30} />
+            <DropdownMenuTrigger className="p-2 ">
+              <Button
+                variant="ghostClone"
+                size="noButton"
+                className={
+                  menuOpen
+                    ? "text-black p-2 transition-transform transform hover:scale-150 active:scale-75 bg-zinc-100 scale-75"
+                    : "text-black p-2 transition-transform transform hover:scale-110 active:scale-75"
+                }
+              >
+                <Ellipsis className="" size={30} />
+              </Button>
 
               <DropdownMenuContent className="flex gap-4 p-2 mx-auto">
                 <DropdownMenuSeparator />
@@ -69,9 +85,12 @@ const DesktopMenu = ({ menuOpen, setMenuOpen }: MenuProps) => {
               </DropdownMenuContent>
             </DropdownMenuTrigger>
           </DropdownMenu>
-          <Link href="create-listings">
+          <Link
+            href="create-listings"
+            className="hover:scale-110 transition-transform transform active:scale-95"
+          >
             <Button variant="link" size="noButton">
-              Create a Listing{" "}
+              Create a Listing
             </Button>
           </Link>
         </div>
