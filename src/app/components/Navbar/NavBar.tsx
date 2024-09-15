@@ -36,7 +36,7 @@ export default function Navbar() {
           {/* Logo or Brand Name */}
           <Link
             href="/"
-            className="text-2xl font-bold text-gray-900 hover:text-[#6b289c] transition-transform transform hover:scale-105 active:scale-95"
+            className="text-2xl font-bold text-gray-900 md:hover:text-[#6b289c] transition-transform transform hover:scale-105 active:scale-95"
           >
             Studio<span className="text-[#33134A]">Trap</span>
           </Link>
