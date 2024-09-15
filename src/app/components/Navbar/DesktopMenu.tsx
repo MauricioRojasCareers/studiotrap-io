@@ -12,13 +12,18 @@ import {
   DropdownMenuTrigger,
 } from "~/app/components/ui/dropdown-menu";
 import { MenuProps } from "./NavBar";
+import { useState } from "react";
+import Spinner from "./Spinner";
 
 const DesktopMenu = ({ menuOpen, setMenuOpen }: MenuProps) => {
   const { data: session } = useSession();
 
+  const [loading, setLoading] = useState(false); // State to manage loading
+
   const handleSign = () => {
     setMenuOpen(false);
     if (session) {
+      setLoading(true);
       signOut({ redirect: true, callbackUrl: "/" });
     } else {
       signIn();
@@ -30,7 +35,7 @@ const DesktopMenu = ({ menuOpen, setMenuOpen }: MenuProps) => {
       {/* Profile Icon */}
       {session ? (
         <div className="hidden md:flex flex-row justify-center items-center gap-8 ">
-          <Link href="/" className="">
+          <Link href="/">
             <Button
               variant="ghost"
               size="noButton"
@@ -40,47 +45,45 @@ const DesktopMenu = ({ menuOpen, setMenuOpen }: MenuProps) => {
             </Button>
           </Link>
           <DropdownMenu open={menuOpen} onOpenChange={setMenuOpen}>
-            <DropdownMenuTrigger className="p-2 ">
-              <Button
-                variant="ghostClone"
-                size="noButton"
-                className={
-                  menuOpen
-                    ? "text-black p-2 transition-transform transform hover:scale-150 active:scale-75 bg-zinc-100 scale-75"
-                    : "text-black p-2 transition-transform transform hover:scale-110 active:scale-75"
-                }
-              >
-                <Ellipsis className="" size={30} />
-              </Button>
+            <DropdownMenuTrigger
+              className={
+                menuOpen
+                  ? "text-black p-2 transition-transform transform hover:scale-150 active:scale-75 bg-zinc-100 scale-75 rounded-md"
+                  : "text-black p-2 transition-transform transform hover:scale-125 active:scale-75 rounded-md hover:bg-zinc-100 "
+              }
+            >
+              {loading ? <Spinner /> : <Ellipsis size={30} />}
 
-              <DropdownMenuContent className="flex gap-4 p-2 mx-auto">
+              <DropdownMenuContent className="flex gap-4 p-2 mx-auto items-center">
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <Link href="/listings">All Listings</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link
-                    href="/profile"
-                    className="flex flex-row items-center gap-3"
-                  >
+                <Link href="/listings">
+                  <DropdownMenuItem className="transition-transform transform hover:scale-105 active:scale-95 cursor-pointer">
+                    All Listings
+                  </DropdownMenuItem>
+                </Link>
+                <Link href="/profile">
+                  <DropdownMenuItem className="flex flex-row items-center gap-3 transition-transform transform hover:scale-105 active:scale-95 cursor-pointer">
                     <Image
                       src={session?.user.image as string}
                       alt="profile image"
-                      width={30}
-                      height={30}
+                      width={20}
+                      height={20}
                       className="rounded-full"
                     />
-                    Profile{" "}
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/dashboard">Dashboard</Link>
-                </DropdownMenuItem>
+                    Profile
+                  </DropdownMenuItem>
+                </Link>
+                <Link href="/dashboard">
+                  <DropdownMenuItem className="transition-transform transform hover:scale-105 active:scale-95 cursor-pointer">
+                    Dashboard
+                  </DropdownMenuItem>
+                </Link>
 
-                <DropdownMenuItem className="bg-red-500 hover:bg-red-500 text-xs focus:bg-red-300 ">
-                  <button className="text-white " onClick={handleSign}>
-                    Sign Out
-                  </button>
+                <DropdownMenuItem
+                  className="bg-red-500 hover:bg-red-500 text-xs focus:bg-red-300 transition-transform transform hover:scale-90 active:scale-105 text-white cursor-pointer"
+                  onClick={handleSign}
+                >
+                  <span className="text-white">Sign Out </span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenuTrigger>
@@ -97,13 +100,28 @@ const DesktopMenu = ({ menuOpen, setMenuOpen }: MenuProps) => {
       ) : (
         <div className=" flex flex-row items-center gap-2">
           <Link href="/">
-            <House />
+            <Button
+              variant="ghost"
+              className="text-black p-2 transition-transform transform hover:scale-125 active:scale-95 "
+            >
+              <House />
+            </Button>
           </Link>
-          <Button variant={"ghost"} onClick={handleSign}>
-            Log In
-          </Button>
+          <div onClick={handleSign}>
+            <Button
+              variant={"ghost"}
+              className="text-black p-2 transition-transform transform hover:scale-105 active:scale-75 "
+            >
+              Log In
+            </Button>
+          </div>
           <Link href={"/signup"}>
-            <Button variant={"ghost"}>Sign Up</Button>
+            <Button
+              variant={"ghost"}
+              className="text-black p-2 transition-transform transform hover:scale-105 active:scale-75 "
+            >
+              Sign Up
+            </Button>
           </Link>
         </div>
       )}

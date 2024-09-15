@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"; // For animations
 
 import { useEffect, useState } from "react";
+import Spinner from "../components/Navbar/Spinner";
 
 interface Listing {
   id: string;
@@ -43,8 +44,8 @@ export default function Listings() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        Loading...
+      <div className="flex justify-center items-center h-screen w-screen">
+        <Spinner width={100} height={100} />
       </div>
     );
   }

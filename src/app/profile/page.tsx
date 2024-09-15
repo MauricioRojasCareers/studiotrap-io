@@ -9,7 +9,7 @@ export default async function ProfilePage() {
   if (!session) redirect("/");
 
   return (
-    <div className="min-h-screen bg-purple-100">
+    <div className="min-h-screen bg-purple-100 w-screen">
       <div className="container mx-auto flex flex-col md:flex-row px-4 py-8">
         {/* Sidebar */}
         <aside className="w-full md:w-1/4 bg-purple p-6 rounded-lg shadow-lg mb-8 md:mb-0">
