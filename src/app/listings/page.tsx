@@ -88,7 +88,7 @@ export default function Listings() {
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff]">
       <motion.div
-        className="flex-grow p-6 flex flex-col items-center h-auto"
+        className="flex-grow p-6 flex flex-col items-center h-auto mb-16"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
