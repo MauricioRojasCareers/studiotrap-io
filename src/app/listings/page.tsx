@@ -88,7 +88,7 @@ export default function Listings() {
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff]">
       <motion.div
-        className="flex-grow p-4 flex flex-col items-center h-auto"
+        className="flex-grow p-6 flex flex-col items-center h-auto"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -96,7 +96,7 @@ export default function Listings() {
         <h2 className="text-3xl font-bold text-center mb-6">Listings</h2>
 
         {listings.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl w-full m-4 ">
             {listings.map((listing) => (
               <motion.div
                 className="p-6 bg-white rounded-lg shadow-lg transition-transform transform hover:scale-105 active:scale-110"
@@ -105,7 +105,7 @@ export default function Listings() {
                 // whileTap={{ scale: 0.95 }}
               >
                 <div className="flex flex-col">
-                  <div className="flex flex-row justify-between">
+                  <div className="flex flex-row justify-between items-center gap-4">
                     <p className="text-md font-bold truncate">
                       {listing.address}
                       &nbsp;
@@ -129,7 +129,7 @@ export default function Listings() {
                     )}
                   </div>
                   <p
-                    className="text-gray-700 
+                    className="text-slate-900 font-extralight text-sm truncate
                     "
                   >
                     Price per hour: ${listing.pricePerHour}
