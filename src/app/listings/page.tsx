@@ -5,6 +5,7 @@ import { motion } from "framer-motion"; // For animations
 import { useEffect, useState } from "react";
 import Spinner from "../components/Navbar/Spinner";
 import { useSession } from "next-auth/react";
+import { CircleX, Delete } from "lucide-react";
 
 interface Listing {
   User: {
@@ -87,7 +88,7 @@ export default function Listings() {
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff]">
       <motion.div
-        className="flex-grow p-4 flex flex-col items-center"
+        className="flex-grow p-4 flex flex-col items-center h-auto"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -98,23 +99,42 @@ export default function Listings() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl w-full">
             {listings.map((listing) => (
               <motion.div
-                className="p-6 bg-white rounded-lg shadow-lg"
+                className="p-6 bg-white rounded-lg shadow-lg transition-transform transform hover:scale-105 active:scale-110"
                 key={listing.id}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                // whileHover={{ scale: 1.05 }}
+                // whileTap={{ scale: 0.95 }}
               >
-                {listing.User?.email === session?.user.email && (
-                  <div
-                    onClick={() => onDelete(listing.id, listing.userId)}
-                    className="absolute top-2 right-2 p-2 bg-red-500 text-white rounded-full cursor-pointer hover:bg-red-300 focus:outline-none"
-                  >
-                    x
+                <div className="flex flex-col">
+                  <div className="flex flex-row justify-between">
+                    <p className="text-md font-bold truncate">
+                      {listing.address}
+                      &nbsp;
+                    </p>
+                    {listing.User?.email === session?.user.email && (
+                      // <button
+                      //   onClick={() => onDelete(listing.id, listing.userId)}
+                      //   className="ml-auto p-2 bg-rose-500 w-8 h-8 text-xs text-white rounded-full cursor-pointer hover:bg-red-300 focus:outline-none"
+                      // >
+                      //   x
+                      // </button>
+                      <button className="">
+                        <div className="p-2">
+                          <CircleX
+                            size={25}
+                            className="ml-auto md:text-slate-300 text-rose-400 hover:text-rose-500 ative:text-rose-800 transition-transform transform active:scale-75"
+                            onClick={() => onDelete(listing.id, listing.userId)}
+                          />
+                        </div>
+                      </button>
+                    )}
                   </div>
-                )}
-                <h2 className="text-2xl font-bold mb-2">{listing.address}</h2>
-                <p className="text-gray-700">
-                  Price per hour: ${listing.pricePerHour}
-                </p>
+                  <p
+                    className="text-gray-700 
+                    "
+                  >
+                    Price per hour: ${listing.pricePerHour}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
