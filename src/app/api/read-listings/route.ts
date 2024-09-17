@@ -7,7 +7,11 @@ const prisma = new PrismaClient();
 // Define the GET method for fetching listings
 export async function GET() {
   try {
-    const listings = await prisma.listing.findMany(); // Fetch all listings from the database
+    const listings = await prisma.listing.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
     const response = NextResponse.json({ success: true, listings });
     response.headers.set("Cache-Control", "no-store");
     revalidatePath("/listings");
