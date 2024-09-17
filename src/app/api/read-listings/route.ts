@@ -11,6 +11,13 @@ export async function GET() {
       orderBy: {
         createdAt: "desc",
       },
+      include: {
+        User: {
+          select: {
+            email: true,
+          },
+        },
+      },
     });
     const response = NextResponse.json({ success: true, listings });
     response.headers.set("Cache-Control", "no-store");

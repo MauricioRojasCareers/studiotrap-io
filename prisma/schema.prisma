@@ -70,12 +70,12 @@ model Listing {
   id           String         @id @default(cuid()) // Auto-generated, required
   address      String // Required
   pricePerHour Float // Required
-  userId       String? // Optional
+  userId       String // Optional
   title        String? // Optional
   description  String? // Optional
   images       ListingImage[] // Optional relation
   createdAt    DateTime       @default(now()) // Auto-generated, required
-  User         User?          @relation(fields: [userId], references: [id])
+  User         User         @relation(fields: [userId], references: [id])
 }
 
 model ListingImage {

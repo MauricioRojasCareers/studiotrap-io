@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -93,28 +92,6 @@ export default function CreateListingForm() {
           <h1 className="text-3xl font-bold text-center mb-6">
             Create Listing
           </h1>
-
-          {/* Username Field */}
-          {/* 
-          <FormField
-            control={form.control}
-            name="username"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-gray-700">Username</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="shadcn"
-                    className="p-3 rounded-lg bg-gray-50 text-black shadow-sm"
-                    {...field}
-                    {...register("username")}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          */}
 
           {/* Address Field */}
           <FormField
