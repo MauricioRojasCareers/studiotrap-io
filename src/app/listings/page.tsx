@@ -105,29 +105,33 @@ export default function Listings() {
                 // whileTap={{ scale: 0.95 }}
               >
                 <div className="flex flex-row h-full gap-2 justify-between">
-                  <div className="flex flex-col gap-2 w-[75%] h-20">
-                    <div>
+                  <div className="flex flex-col w-[75%] h-20 ">
+                    <div className="">
                       <h2 className="font-bold truncate">
                         {listing.address}
                         &nbsp;
                       </h2>
                     </div>
                     <hr />
-                    <p
-                      className="text-slate-900 text-sm truncate font-bold
+                    <div className="h-full">
+                      <div className="absolute bottom-0 left-0 p-4">
+                        <p
+                          className="text-slate-900 text-sm truncate font-bold
                     "
-                    >
-                      ${listing.pricePerHour}/
-                      <span className="font-extralight">hr</span>
-                    </p>
+                        >
+                          ${listing.pricePerHour}/
+                          <span className="font-extralight">hr</span>
+                        </p>
+                      </div>
+                    </div>
                   </div>
 
                   {listing.User?.email === session?.user.email && (
-                    <button>
+                    <button className="absolute top-0 right-0 p-2">
                       <div className="p-2">
                         <CircleX
                           size={20}
-                          className="ml-auto md:text-slate-300 text-rose-400 hover:text-rose-500 ative:text-rose-800 transition-transform transform active:scale-75"
+                          className=" md:text-slate-300 text-rose-400 hover:text-rose-500 ative:text-rose-800 transition-transform transform active:scale-95 hover:scale-110"
                           onClick={() => onDelete(listing.id, listing.userId)}
                         />
                       </div>
