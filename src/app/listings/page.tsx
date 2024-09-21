@@ -5,7 +5,7 @@ import { motion } from "framer-motion"; // For animations
 import { useEffect, useState } from "react";
 import Spinner from "../components/Navbar/Spinner";
 import { useSession } from "next-auth/react";
-import { CircleX, Delete } from "lucide-react";
+import { CircleX } from "lucide-react";
 
 interface Listing {
   User: {
@@ -104,36 +104,35 @@ export default function Listings() {
                 // whileHover={{ scale: 1.05 }}
                 // whileTap={{ scale: 0.95 }}
               >
-                <div className="flex flex-col">
-                  <div className="flex flex-row justify-between items-center gap-4">
-                    <p className="text-md font-bold truncate">
-                      {listing.address}
-                      &nbsp;
-                    </p>
-                    {listing.User?.email === session?.user.email && (
-                      // <button
-                      //   onClick={() => onDelete(listing.id, listing.userId)}
-                      //   className="ml-auto p-2 bg-rose-500 w-8 h-8 text-xs text-white rounded-full cursor-pointer hover:bg-red-300 focus:outline-none"
-                      // >
-                      //   x
-                      // </button>
-                      <button className="">
-                        <div className="p-2">
-                          <CircleX
-                            size={25}
-                            className="ml-auto md:text-slate-300 text-rose-400 hover:text-rose-500 ative:text-rose-800 transition-transform transform active:scale-75"
-                            onClick={() => onDelete(listing.id, listing.userId)}
-                          />
-                        </div>
-                      </button>
-                    )}
-                  </div>
-                  <p
-                    className="text-slate-900 font-extralight text-sm truncate
+                <div className="flex flex-row h-full gap-2 justify-between">
+                  <div className="flex flex-col gap-2 w-[75%] h-20">
+                    <div>
+                      <h2 className="font-bold truncate">
+                        {listing.address}
+                        &nbsp;
+                      </h2>
+                    </div>
+                    <hr />
+                    <p
+                      className="text-slate-900 text-sm truncate font-bold
                     "
-                  >
-                    Price per hour: ${listing.pricePerHour}
-                  </p>
+                    >
+                      ${listing.pricePerHour}/
+                      <span className="font-extralight">hr</span>
+                    </p>
+                  </div>
+
+                  {listing.User?.email === session?.user.email && (
+                    <button>
+                      <div className="p-2">
+                        <CircleX
+                          size={20}
+                          className="ml-auto md:text-slate-300 text-rose-400 hover:text-rose-500 ative:text-rose-800 transition-transform transform active:scale-75"
+                          onClick={() => onDelete(listing.id, listing.userId)}
+                        />
+                      </div>
+                    </button>
+                  )}
                 </div>
               </motion.div>
             ))}

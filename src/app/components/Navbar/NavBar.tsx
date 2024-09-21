@@ -4,6 +4,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Link from "next/link";
 import MobileMenu from "./MobileMenu";
 import DesktopMenu from "./DesktopMenu";
+import Spinner from "./Spinner";
 
 export type MenuProps = {
   menuOpen: boolean;
@@ -11,8 +12,9 @@ export type MenuProps = {
 };
 
 export default function Navbar() {
-  const [showMobileMenu, setShowMobileMenu] = useState(true);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState<boolean>(true);
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [firstLoad, setFirstLoad] = useState<boolean>(true);
 
   useEffect(() => {
     // Intial Settin Of Width
@@ -21,6 +23,8 @@ export default function Navbar() {
     const handleOrientationChange = () => {
       setShowMobileMenu(window.innerWidth < 768);
     };
+
+    setFirstLoad(false);
 
     window.addEventListener("resize", handleOrientationChange);
 
@@ -41,6 +45,8 @@ export default function Navbar() {
             Studio<span className="text-[#33134A]">Trap</span>
           </Link>
         </div>
+
+        {firstLoad ? <Spinner /> : null}
 
         {showMobileMenu ? (
           <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
