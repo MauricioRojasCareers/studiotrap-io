@@ -180,7 +180,7 @@ export default function Listings() {
           ))}
         </div>
       </div>
-      <div className="min-h-screen w-full bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff]">
+      <div className="min-h-screen min-w-full bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff]">
         <motion.div
           className="flex-grow p-6 flex flex-col items-center h-auto mb-16"
           initial={{ opacity: 0, y: 50 }}
