@@ -137,7 +137,12 @@ export default function Listings() {
           <div className="grid grid-cols-auto md:grid-cols-2 lg:grid-cols-3 gap-12 md:px-8 lg:px-8 px-4">
             {images?.map((image, index) => (
               <div
-                className="grid gap-6 max-w-4xl w-full bg-white shadow-lg rounded-md px-4 pt-4"
+                className="grid gap-6 max-w-4xl w-full 
+
+                bg-white/20 ring-1 ring-black/5
+                shadow-lg
+                
+               rounded-md px-4 pt-4  transition-transform duration-300 ease-in-out transform hover:scale-105 active:scale-95"
                 key={index}
               >
                 <div className="w-[100%] flex flex-col items-center ">
@@ -165,6 +170,7 @@ export default function Listings() {
             ))}
           </div>
         </div>
+        <hr className="w-full h-5 my-8 bg-gray-200 border-0 rounded dark:bg-gray-700 justify-center" />
         <motion.div
           className="flex-grow p-6 flex flex-col items-center h-auto mb-16"
           initial={{ opacity: 0, y: 50 }}
@@ -174,10 +180,10 @@ export default function Listings() {
           <h2 className="text-3xl font-bold text-center mb-6">Listings</h2>
 
           {listings.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl w-full m-4 ">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl w-full m-4">
               {listings.map((listing) => (
                 <motion.div
-                  className="p-6 bg-white rounded-lg shadow-lg transition-transform transform hover:scale-105 active:scale-110"
+                  className="p-6 bg-white rounded-lg shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-110 active:scale-95"
                   key={listing.id}
                   // whileHover={{ scale: 1.05 }}
                   // whileTap={{ scale: 0.95 }}
