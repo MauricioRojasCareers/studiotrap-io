@@ -86,6 +86,7 @@ export default function Listings() {
   }
 
   return (
+<<<<<<< HEAD
     <div className="min-h-screen w-full bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff]">
       <motion.div
         className="flex-grow p-6 flex flex-col items-center h-auto mb-16"
@@ -94,6 +95,34 @@ export default function Listings() {
         transition={{ duration: 0.8 }}
       >
         <h2 className="text-3xl font-bold text-center mb-6">Listings</h2>
+=======
+    <>
+      <h2 className="bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff] text-center p-4 font-bold w-full ">
+        Images from S3 Bucket
+      </h2>
+      <div className="p-4 bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff] min-w-full flex items-center justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 p-4 items-center w-full mb-4 mt-2">
+          {/* Tailwind CSS for layout */}
+          {files.map((file, index) => (
+            <div
+              key={index}
+              className="image-item flex justify-center items-center h-full "
+            >
+              <div className="h-full flex flex-col items-center cursor-pointer transition-transform transform hover:scale-110 active:scale-75">
+                <Image
+                  src={`https://studiotrap-images.s3.amazonaws.com/${file.Key}`} // Construct URL
+                  alt={file.Key} // Optional: Use a descriptive alt text
+                  className="w-full h-auto max-w-xs md:max-w-md lg:max-w-xs rounded-md" // Tailwind classes for responsive images
+                  width={500}
+                  height={300}
+                  layout="responsive"
+                />
+                <div className="h-full w-full">
+                  <p className="text-slate-800 text-xs font-bold bg-gradient-to-b from-[#ffd6ff] to-[#e19dff] p-4 rounded-lg">
+                    {file.Key}
+                  </p>
+                </div>
+>>>>>>> 1b70053 (trying to rebase)
 
         {listings.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl w-full m-4 ">
