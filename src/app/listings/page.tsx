@@ -128,59 +128,43 @@ export default function Listings() {
   }
 
   return (
-    <div className="min-w-full p-4">
-      <div className="min-w-full bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff] flex flex-col p-8 gap-4">
-        <h2 className="text-center text-slate-700 font-bold text-2xl">
-          S3 Uploads
-        </h2>
-        <div className="grid grid-cols-auto md:grid-cols-2 lg:grid-cols-3 gap-12 md:p-8 lg:p-8">
-          {images?.map((image, index) => (
-            <div
-              className="bg-white rounded-md p-4 shadow-lg transition-transform transform hover:scale-105 active:scale-90 flex flex-col md:gap-6 lg:gap-6 gap-2"
-              key={index}
-            >
-              <div className="w-[100%] flex items-center">
-                <AspectRatio ratio={16 / 9} className="bg-muted">
-                  {!imagesLoading && (
-                    <div className="bg-black flex justify-center items-center h-full rounded-md">
-                      <Spinner width={100} height={100} />
-                    </div>
-                  )}
-                  <Image
-                    src={`https://studiotrap-images.s3.amazonaws.com/${image.Key}`}
-                    alt="Image"
-                    fill
-                    className="h-full w-full rounded-md object-cover"
-                    priority
-                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    onLoad={onImageLoad}
-                  />
-                </AspectRatio>
+    <>
+      <div className="min-h-screen w-full bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff]">
+        <div className=" p-4">
+          <h2 className="text-center text-slate-700 font-bold text-2xl">
+            S3 Uploads
+          </h2>
+          <div className="grid grid-cols-auto md:grid-cols-2 lg:grid-cols-3 gap-12 md:p-8 lg:p-8">
+            {images?.map((image, index) => (
+              <div
+                className="bg-white rounded-md p-4 shadow-lg transition-transform transform hover:scale-105 active:scale-90 flex flex-col md:gap-6 lg:gap-6 gap-2"
+                key={index}
+              >
+                <div className="w-[100%] flex items-center">
+                  <AspectRatio ratio={16 / 9} className="bg-muted">
+                    {!imagesLoading && (
+                      <div className="bg-black flex justify-center items-center h-full rounded-md">
+                        <Spinner width={100} height={100} />
+                      </div>
+                    )}
+                    <Image
+                      src={`https://studiotrap-images.s3.amazonaws.com/${image.Key}`}
+                      alt="Image"
+                      fill
+                      className="h-full w-full rounded-md object-cover"
+                      priority
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      onLoad={onImageLoad}
+                    />
+                  </AspectRatio>
+                </div>
+                <p className="font-bold text-sm text-wrap truncate w-full text-center">
+                  {image.Key}
+                </p>
               </div>
-              <p className="font-bold text-sm text-wrap truncate w-full text-center">
-                {image.Key}
-              </p>
-            </div>
-            // <AspectRatio ratio={16 / 9}>
-            //   <div
-            //     className="p-4 bg-white rounded-lg shadow-lg transition-transform transform hover:scale-105 active:scale-95 flex flex-col gap-4 justify-center w-[450px]"
-            //     key={index}
-            //   >
-            //     <Image
-            //       src={`https://studiotrap-images.s3.amazonaws.com/${image.Key}`} // Construct the S3 URL
-            //       alt={image.Key}
-            //       className="w-full h-auto object-cover rounded-md"
-            //       width={500}
-            //       height={300}
-            //       priority
-            //     />
-            //     <p className="font-bold text-xs">{image.Key}</p>
-            //   </div>
-            // </AspectRatio>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="min-h-screen min-w-full bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff]">
         <motion.div
           className="flex-grow p-6 flex flex-col items-center h-auto mb-16"
           initial={{ opacity: 0, y: 50 }}
@@ -240,6 +224,6 @@ export default function Listings() {
           )}
         </motion.div>
       </div>
-    </div>
+    </>
   );
 }
