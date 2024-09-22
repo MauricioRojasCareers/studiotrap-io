@@ -10,6 +10,9 @@ export const env = createEnv({
     NODE_ENV: z.enum(["development", "test", "production"]),
     GOOGLE_ID: z.string().min(1),
     CLIENT_SECRET: z.string().min(1),
+    AWS_S3_REGION: z.string().min(1),
+    AWS_S3_ACCESS_KEY_ID: z.string().min(1),
+    AWS_S3_SECRET_ACCESS_KEY: z.string().min(1),
   },
 
   /**
@@ -30,6 +33,9 @@ export const env = createEnv({
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
     GOOGLE_ID: process.env.GOOGLE_ID,
     CLIENT_SECRET: process.env.CLIENT_SECRET,
+    AWS_S3_REGION: process.env.AWS_S3_REGION,
+    AWS_S3_ACCESS_KEY_ID: process.env.AWS_S3_ACCESS_KEY_ID,
+    AWS_S3_SECRET_ACCESS_KEY: process.env.AWS_S3_SECRET_ACCESS_KEY,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
