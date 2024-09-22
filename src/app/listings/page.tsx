@@ -129,7 +129,7 @@ export default function Listings() {
 
   return (
     <>
-      <div className="min-h-screen min-w-full bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff]">
+      <div className="min-h-screen min-w-full md:w-full lg:w-full bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff]">
         <div className="p-4">
           <h2 className="text-center text-slate-700 font-bold text-2xl mb-4">
             S3 Uploads
