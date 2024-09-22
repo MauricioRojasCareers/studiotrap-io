@@ -129,9 +129,9 @@ export default function Listings() {
 
   return (
     <>
-      <div className="min-h-screen w-full bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff]">
-        <div className=" p-4">
-          <h2 className="text-center text-slate-700 font-bold text-2xl">
+      <div className="min-h-screen bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff]">
+        <div className="p-4">
+          <h2 className="text-center text-slate-700 font-bold text-2xl mb-4">
             S3 Uploads
           </h2>
           <div className="grid grid-cols-auto md:grid-cols-2 lg:grid-cols-3 gap-12 md:p-8 lg:p-8">
