@@ -17,6 +17,8 @@ import {
 } from "~/app/components/ui/form";
 import { Input } from "~/app/components/ui/input";
 
+import S3UploadForm from "~/app/components/S3UploadForm";
+
 // Define validation schema using Zod
 const formSchema = z.object({
   address: z
@@ -59,7 +61,6 @@ export default function CreateListingForm() {
         // Handle success
         // alert("Listing created successfully!");
         router.push("/listings");
-
       } else {
         // Handle failure
         alert(`Error: ${result.error || "Failed to create listing"}`);
@@ -80,10 +81,12 @@ export default function CreateListingForm() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
+      <S3UploadForm />
+
       {/* Form Section */}
       <Form {...form}>
         <motion.form
-          className="space-y-6 p-8 bg-white rounded-xl shadow-xl max-w-md w-full mt-20 md:w-80"
+          className="space-y-6 p-8 bg-white rounded-xl shadow-xl max-w-md w-full md:w-80 h-full"
           onSubmit={handleSubmit(onSubmit)} // Form submission handled here
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
