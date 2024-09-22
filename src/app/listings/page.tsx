@@ -134,17 +134,17 @@ export default function Listings() {
           <h2 className="text-center text-slate-700 font-bold text-2xl mb-4">
             S3 Uploads
           </h2>
-          <div className="grid grid-cols-auto md:grid-cols-2 lg:grid-cols-3 gap-12 md:p-8 lg:p-8">
+          <div className="grid grid-cols-auto md:grid-cols-2 lg:grid-cols-3 gap-12 md:p-8 lg:p-8 p-4">
             {images?.map((image, index) => (
               <div
-                className="bg-white rounded-md p-4 shadow-lg transition-transform transform hover:scale-105 active:scale-90 flex flex-col md:gap-6 lg:gap-6 gap-2"
+                className="grid gap-6 max-w-4xl w-full bg-white flex-row shadow-lg rounded-md p-4"
                 key={index}
               >
-                <div className="w-[100%] flex items-center">
+                <div className="w-[100%] flex items-center p-4">
                   <AspectRatio ratio={16 / 9} className="bg-muted">
                     {!imagesLoading && (
                       <div className="bg-black flex justify-center items-center h-full rounded-md">
-                        <Spinner width={100} height={100} />
+                        <Spinner width={50} height={50} />
                       </div>
                     )}
                     <Image
