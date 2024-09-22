@@ -6,27 +6,27 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="h-screen flex flex-col items-center justify-center gap-12 px-4 py-16 overflow-hidden relative">
-      <div className="absolute inset-0 animate-gradient" />
+    <main className="h-screen flex flex-col items-center justify-center bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff] gap-12 px-4 py-16 overscroll-none">
       <motion.h1
-        className="text-5xl font-extrabold tracking-tight sm:text-[5rem] p-2 text-white z-10"
+        className="text-5xl font-extrabold tracking-tight sm:text-[5rem] p-2 text-white text-center"
         initial={{ opacity: 0, y: -20 }}
         animate={{
           opacity: 1,
           y: 0,
-          scale: [1, 1.05, 1],
-          rotate: [0, 5, -5, 0],
+          scale: [1, 1.1, 1.2, 1.1, 1], // More pronounced scaling effect
+          rotate: [0, 10, -10, 0], // More rotation for a lively effect
         }}
         transition={{
-          duration: 1.5,
+          duration: 2, // Slower for a more dynamic feel
           ease: "easeInOut",
-          loop: Infinity,
+          loop: Infinity, // Loop the animation
         }}
       >
         Studio <span className="text-[#33134A]">Trap</span>
       </motion.h1>
+
       <motion.div
-        className="flex flex-col gap-2 p-2 text-center z-10"
+        className="flex flex-col gap-2 p-2 text-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
