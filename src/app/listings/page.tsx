@@ -130,17 +130,17 @@ export default function Listings() {
   return (
     <>
       <div className="min-h-screen min-w-full md:w-full lg:w-full bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff]">
-        <div className="p-4">
-          <h2 className="text-center text-slate-700 font-bold text-2xl mb-4">
+        <div className="">
+          <h2 className="text-center text-slate-700 font-bold text-2xl p-4">
             S3 Uploads
           </h2>
-          <div className="grid grid-cols-auto md:grid-cols-2 lg:grid-cols-3 gap-12 md:p-8 lg:p-8 p-4">
+          <div className="grid grid-cols-auto md:grid-cols-2 lg:grid-cols-3 gap-12 md:px-8 lg:px-8 px-4">
             {images?.map((image, index) => (
               <div
-                className="grid gap-6 max-w-4xl w-full bg-white flex-row shadow-lg rounded-md p-4"
+                className="grid gap-6 max-w-4xl w-full bg-white shadow-lg rounded-md px-4 pt-4"
                 key={index}
               >
-                <div className="w-[100%] flex items-center p-4">
+                <div className="w-[100%] flex flex-col items-center ">
                   <AspectRatio ratio={16 / 9} className="bg-muted">
                     {!imagesLoading && (
                       <div className="bg-black flex justify-center items-center h-full rounded-md">
@@ -157,10 +157,10 @@ export default function Listings() {
                       onLoad={onImageLoad}
                     />
                   </AspectRatio>
+                  <p className="font-extralight text-xs text-wrap truncate w-full p-4 text-black">
+                    {image.Key}
+                  </p>
                 </div>
-                <p className="font-bold text-sm text-wrap truncate w-full text-center">
-                  {image.Key}
-                </p>
               </div>
             ))}
           </div>
