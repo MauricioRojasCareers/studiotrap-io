@@ -128,7 +128,7 @@ export default function Listings() {
   }
 
   return (
-    <div className="w-full">
+    <div className="min-w-full p-4">
       <div className="min-w-full bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff] flex flex-col p-8 gap-4">
         <h2 className="text-center text-slate-700 font-bold text-2xl">
           S3 Uploads
