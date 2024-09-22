@@ -3,6 +3,7 @@
 import { NextResponse } from "next/server";
 import { S3Client, ListObjectsV2Command } from "@aws-sdk/client-s3";
 import { env } from "~/env";
+import { revalidatePath } from "next/cache";
 
 // Initialize the S3 client
 const s3Client = new S3Client({
@@ -21,6 +22,7 @@ export async function GET() {
     });
 
     const data = await s3Client.send(command);
+    revalidatePath("/listings");
 
     // Return the list of files (objects)
     return NextResponse.json({
