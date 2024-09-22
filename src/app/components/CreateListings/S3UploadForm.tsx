@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Spinner from "../Navbar/Spinner";
 import { motion } from "framer-motion";
+import { FileInput } from "lucide-react";
 
 export default function S3UploadFor() {
   const router = useRouter();
@@ -44,13 +45,17 @@ export default function S3UploadFor() {
 
   return (
     <>
-      <div className="flex flex-col justify-center rounded-md mb-10 mt-10 gap-4">
-        <h2 className="text-center text-md font-bold w-full">
-          Upload an image:
-        </h2>
+      <div className="flex flex-col justify-center rounded-md mb-10 mt-10 gap-4 bg-slate-100 p-2">
+        <h2 className="text-left text-md font-bold w-full">Choose Cover:</h2>
         <div className="flex flex-row text-center items-center justify-around gap-4">
-          <label className="text-center text-xs w-full cursor-pointer rounded-md p-4 text-black font-extralight">
-            {file ? file.name : "Choose File"}
+          <label
+            className="text-center text-xs cursor-pointer rounded-md p-4 text-black font-extralightw-[50%] duration-300 ease-in-out
+                        hover:scale-105"
+          >
+            <div className="flex">
+              <FileInput />
+              {file ? file.name : "Choose File"}
+            </div>
             <input
               type="file"
               accept="image/*"
@@ -58,11 +63,15 @@ export default function S3UploadFor() {
               onChange={handleFileChange}
             />
           </label>
-          {uploading ? <Spinner /> : null}
+          {uploading ? (
+            <div className="w-[50%] p-2">
+              <Spinner width={50} height={50} />
+            </div>
+          ) : null}
         </div>
         <div className="flex justify-around p-2">
           <button
-            className={!file ? "hidden" : "text-xs"}
+            className={!file ? "hidden" : "text-xs w-[50%]"}
             type="submit"
             disabled={!file || uploading}
             onClick={handleClearFile}
@@ -88,22 +97,6 @@ export default function S3UploadFor() {
           >
             {uploading ? "Uploading..." : "Upload"}
           </motion.button>
-
-          {/* <motion.button
-            className="
-        text-white font-bold py-2 px-4 rounded-full 
-        bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 
-        animate-gradient bg-[length:400%_400%] 
-        transition-all duration-300 ease-in-out
-        hover:scale-105
-        focus:outline-none
-        shadow-lg"
-            style={{
-              animation: "gradient-animation 5s ease infinite",
-            }}
-          >
-            Animated Colorful Button
-          </motion.button> */}
         </div>
       </div>
     </>
