@@ -25,6 +25,11 @@ const config = {
         hostname: "lh3.googleusercontent.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "studiotrap-images.s3.amazonaws.com",
+        pathname: "/**",
+      },
     ],
   },
 
