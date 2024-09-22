@@ -18,3 +18,9 @@
     background-position: 0% 50%;
   }
 }
+
+.animate-gradient {
+  background: linear-gradient(270deg, #ff7eb3, #ffb4a2, #c7ceff, #b9fbc0);
+  background-size: 400% 400%;
+  animation: gradient-animation 5s ease infinite; /* Faster animation */
+}
