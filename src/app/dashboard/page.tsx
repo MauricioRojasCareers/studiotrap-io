@@ -133,6 +133,14 @@
 //   );
 // }
 
-export default function ComingSoon() {
-  return <div>Coming Soon...</div>;
+// export default function ComingSoon() {
+//   return <div>Coming Soon...</div>;
+// }
+
+export default function page() {
+  return (
+    <div className="bg-rose-800 min-w-full text-white">
+      <div className="bg-orange-200 p-2">Hello I am children</div>
+    </div>
+  );
 }
