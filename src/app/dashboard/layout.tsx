@@ -5,7 +5,7 @@ export default function DashboardLayout({
 }) {
   return (
     <>
-      <div className="w-full h-screen bg-yellow-300 p-2 flex">
+      <div className="w-full lg:h-screen md:h-screen h-screen bg-yellow-300 p-2 flex">
         <div className="bg-teal-800 flex w-full md:px-16 md:py-4 p-4 mb-20">
           <div className="bg-blue-900 hidden lg:block lg:w-[33%] md:w-[20%] p-2 overflow-y-auto max-h-screen mt-14 lg:text-lg md:text-md text-xs">
             <div className="flex flex-col gap-2 font-bold">
