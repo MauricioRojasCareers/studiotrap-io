@@ -129,23 +129,23 @@ export default function Listings() {
 
   return (
     <>
-      <div className="min-h-screen min-w-full md:w-full lg:w-full bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff] p-4">
-        <div className="mt-16">
-          <h2 className="text-center text-slate-700 font-bold text-2xl p-4">
+      <div className="min-h-screen w-full bg-gradient-to-b from-[#ffd6ff] to-[#b8c0ff] overflow-x-hidden">
+        <div className="mt-16 flex flex-col mx-auto">
+          <h2 className="text-center text-slate-900 font-bold text-xl p-4 bg-white/60">
             S3 Uploads
           </h2>
-          <div className="grid grid-cols-auto md:grid-cols-2 lg:grid-cols-3 gap-12 md:px-8 lg:px-8 px-4">
+          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-12 box-border justify-items-center px-4 m-4">
             {images?.map((image, index) => (
               <div
-                className="grid gap-6 max-w-4xl w-full 
+                className="grid gap-6 max-w-xl w-full mx-auto
 
                 bg-white/20 ring-1 ring-black/5
                 shadow-lg
                 
-               rounded-md px-4 pt-4  transition-transform duration-300 ease-in-out transform hover:scale-105 active:scale-95"
+               rounded-md px-4 pt-4  transition-transform duration-300 ease-in-out transform md:hover:scale-105 md:active:scale-95"
                 key={index}
               >
-                <div className="w-[100%] flex flex-col items-center ">
+                <div className="w-full flex flex-col items-center overflow-hidden">
                   <AspectRatio ratio={16 / 9} className="bg-muted">
                     {!imagesLoading && (
                       <div className="bg-black flex justify-center items-center h-full rounded-md">
@@ -156,7 +156,7 @@ export default function Listings() {
                       src={`https://studiotrap-images.s3.amazonaws.com/${image.Key}`}
                       alt="Image"
                       fill
-                      className="h-full w-full rounded-md object-cover"
+                      className="h-full w-full max-w-full rounded-md object-cover"
                       priority
                       sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       onLoad={onImageLoad}
