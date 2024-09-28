@@ -6,7 +6,7 @@ export default function DashboardLayout({
   return (
     <>
       <div className="w-full h-screen bg-yellow-300 p-2 flex">
-        <div className="bg-teal-200 flex w-full md:px-16 md:py-4 p-4">
+        <div className="bg-teal-800 flex w-full md:px-16 md:py-4 p-4 mb-20">
           <div className="bg-blue-900 hidden lg:block lg:w-[33%] md:w-[20%] p-2 overflow-y-auto max-h-screen mt-14 lg:text-lg md:text-md text-xs">
             <div className="flex flex-col gap-2 font-bold">
               <div className="bg-green-500 flex">
@@ -18,7 +18,7 @@ export default function DashboardLayout({
               <div className="space-y-4 bg-white text-right p-8 text-black">
                 {[...Array(150)].map((_, index) => (
                   <div className="flex flex-row" key={index}>
-                    <div className="bg-red-200 w-[33%]"></div>
+                    <div className="bg-red-200 w-[33%]">hello?</div>
 
                     <p>Item {index + 1}</p>
                   </div>
