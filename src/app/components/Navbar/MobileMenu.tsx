@@ -44,7 +44,7 @@ const MobileMenu = ({ menuOpen, setMenuOpen }: MenuProps) => {
           <SheetClose asChild>
             <>
               {session && (
-                <SheetDescription>
+                <SheetDescription className="flex flex-col gap-8 mt-8 justify-around h-full">
                   <Button
                     type="submit"
                     variant={pathName.endsWith("/") ? "link" : "ghost"}
