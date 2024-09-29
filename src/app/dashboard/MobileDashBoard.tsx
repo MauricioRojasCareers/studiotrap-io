@@ -1,59 +1,14 @@
 import React from "react";
+import DashboardCard from "./DashboardCard";
 
 export default function () {
   return (
-    <div className="bg-red-300 h-screen w-screen px-4 block md:hidden lg:hidden pt-[4rem] overflow-hidden overflow-y-auto">
+    <>
       {/* Ensure the yellow container doesn't scroll */}
-      <div className="bg-yellow-300 w-full text-black flex flex-col h-full p-4 overflow-hidden overflow-y-auto">
+      <div className="w-full h-full container mx-auto overflow-hidden overflow-y-auto pt-20 pb-6 text-black block md:hidden lg:hidden">
         {/* Add padding to account for navbar height */}
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-
-        <p>Hello from inside</p>
-
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
-
-        <p>Hello from inside</p>
-        <p>Hello from inside</p>
+        <DashboardCard />
       </div>
-    </div>
+    </>
   );
 }
