@@ -12,6 +12,8 @@
 // import { getServerAuthSession } from "~/server/auth";
 // import { redirect } from "next/navigation";
 
+import DashboardCard from "./DashboardCard";
+
 // // Sidebar component
 // function Sidebar() {
 //   return (
@@ -139,8 +141,13 @@
 
 export default function page() {
   return (
-    <div className="bg-rose-800 min-w-full text-white">
-      <div className="bg-orange-200 p-2">Hello I am children</div>
+    <div className="min-w-full ">
+      <h2 className="bg-black text-white p-2 text-center fixed">
+        Dashboard Items
+      </h2>
+      {[...Array(100)].map((_, index) => (
+        <DashboardCard key={index}></DashboardCard>
+      ))}
     </div>
   );
 }

@@ -6,28 +6,27 @@ import {
   CardHeader,
   CardTitle,
 } from "~/app/components/ui/card";
-import Spinner from "../components/Navbar/Spinner";
+import DashboardSpinner from "./DashboardSpinner";
 
 export default async function DashboardCard() {
   return (
-    <div className="space-y-4 bg-white text-right p-6    text-black">
-      {[...Array(150)].map((_, index) => (
-        <Card>
-          <CardHeader>
-            <CardTitle>
-              <h2>Dashboard Item</h2>
-            </CardTitle>
-            <CardDescription>{/* <Spinner /> */}</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="flex justify-around">
-              <p>Coming Soon...</p>
-              <Spinner />
-            </div>
-          </CardContent>
-          <CardFooter>{/* <Spinner /> */}</CardFooter>
-        </Card>
-      ))}
-    </div>
+    <>
+      {/* Main Panel Content */}
+      <div className="lg:block w-[100%] p-2 overflow-y-auto max-h-screen">
+        <div className="flex flex-col gap-2 font-bold">
+          <Card>
+            <CardHeader className="flex flex-row justify-around">
+              <CardTitle>Dashboard Item...</CardTitle>
+              <DashboardSpinner width={50} height={50}></DashboardSpinner>
+            </CardHeader>
+            <CardContent>
+              <div className="flex justify-around">
+                <p>Coming Soon...</p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </>
   );
 }
